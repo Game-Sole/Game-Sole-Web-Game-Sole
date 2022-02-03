@@ -1,1 +1,67 @@
 /*STYLING:*/
+@font-face {
+    font-family: "VCR OSD Mono";
+    src: url("../Asset/Font/VCR_OSD_MONO_1.001.ttf");
+}
+*{
+    font-family: "VCR OSD Mono";
+}
+
+body{
+    background-color: #d6d4cf;
+}
+
+img:not(.Logo-navbar){
+    height: 300px;
+}
+
+.Logo-navbar{ 
+    margin: 10px;
+}
+.Homepage-navbar img{
+    height: 80px;
+    float: left;
+}
+
+.Login-navbar img{
+    height: 40px;
+    float: right;
+    padding: 20px 0;
+    margin-bottom: 10px;
+}
+
+.Menu-navbar{
+    background-color: #a49d91;
+    clear: both;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+}
+
+.Menu-navbar a{
+    text-decoration: none;
+    padding: 10px 10px;
+    color: black;
+}
+
+.Menu-navbar a:hover{
+    background-color: #c6c0b6;
+}
+.first-image{
+    margin: 15px;
+    float: right;
+}
+.second-image{
+    margin: 15px;
+    float: left;
+}
+
+.ar1{
+    height: 330px;
+}
+
+article{
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 25px;
+    overflow: hidden;
+}
