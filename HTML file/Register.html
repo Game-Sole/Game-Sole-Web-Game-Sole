@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../CSS file/Register.css">
+    <title>|Register|</title>
+</head>
+
+<body>
+    <header>
+        <div class="Logo-navbar">
+            <nav class="Homepage-navbar">
+                <a href="Homepage.html"><img src="../images/Game_Sole_Logo_Rev1.png" /></a>
+            </nav>
+        </div>
+    </header>
+    <h1>Welcome to</h1>
+    <h2>Please register</h2>
+    <form>
+        <fieldset>
+            <label for="UserID">ID</label><br>
+            <input type="text" name="UserID" pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><].{6,}" required title="At least 6 character"><br>
+            <label for="UserPassword">Password</label><br>
+            <input type="text" name="UserPassword" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]).{8,}" required title="At least 8 character and have at least one Lowercase, Uppercase, number, special character "><br>
+            <label for="UserEmail">Email</label><br>
+            <input type="text" name="UserEmail" pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+"><br>
+            <label for="UserAddress">Address</label><br>
+            <input type="text" name="UserAddress" pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+"><br>
+            <label for="UserTel">Email</label><br>
+            <input type="text" name="UserTel" pattern="[0-9]{10}" required title="please fill in your phone number"><br>
+            <button type="submit">Submit</button>
+
+        </fieldset>
+    </form>
+</body>
+
+</html>
