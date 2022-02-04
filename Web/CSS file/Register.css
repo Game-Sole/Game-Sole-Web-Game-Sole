@@ -1,1 +1,39 @@
 /*STYLING:*/
+@font-face {
+    font-family: "VCR OSD Mono";
+    src: url("../Asset/Font/VCR_OSD_MONO_1.001.ttf");
+}
+*{
+    font-family: "VCR OSD Mono";
+}
+
+body{
+    background-image: url('../images/WebBG.jpeg');
+    background-size: cover;
+}
+
+.Homepage-navbar img{
+    height: 80px;
+}
+
+.Login-navbar img{
+    height: 40px;
+    float: right;
+    padding: 20px 0;
+    margin-bottom: 10px;
+}
+
+h1{
+    text-align: center;
+}
+
+h2{
+    margin-left: 25px;
+}
+
+form{
+    color: #4d483e;
+    line-height: 25px;
+    background-color: #c6c0b6;
+    margin: 20px;
+}
