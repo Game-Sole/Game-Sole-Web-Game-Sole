@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!--- Page title --->
+
 <head>
     <link rel="stylesheet" href="../CSS file/Register.css">
     <title>|Register|</title>
@@ -8,14 +10,38 @@
 
 <body>
     <header>
+        <!--- Contain Web logo, login, and register button link to another page --->
         <div class="Logo-navbar">
+
+            <!--- Web logo link to homepage --->
             <nav class="Homepage-navbar">
                 <a href="Homepage.html"><img src="../images/Logo_Rev2.png" /></a>
             </nav>
         </div>
     </header>
+
+    <!---Navigation bar contain Homepage, ShopPage, and About US button link to another page --->
+    <nav class="Menu-navbar">
+
+        <!--- Homepage button link to Home page --->
+        <nav class="Homepage">
+            <a href="Homepage.html"><img src="../images/Navigation Bar Home.png" /></a>
+        </nav>
+
+        <!--- Shopping button link to Shop page --->
+        <nav class="Shopping">
+            <a href="ShopPage.html"><img src="../images/Navigation Bar Shop Idle.png" /></a>
+        </nav>
+
+        <!--- About Us button link to About US page --->
+        <nav class="About US">
+            <a href="AboutUs.html"><img src="../images/Navigation Bar About Us Idle.png" /></a>
+        </nav>
+    </nav>
+
     <h1>Welcome to</h1>
     <h2>Please register</h2>
+    <!--- Register Input--->
     <form>
         <fieldset>
             <label for="UserID">ID</label><br>
@@ -29,9 +55,9 @@
             <label for="UserTel">Email</label><br>
             <input type="text" name="UserTel" pattern="[0-9]{10}" required title="please fill in your phone number"><br>
             <button type="submit">Submit</button>
-
         </fieldset>
     </form>
+    <!--- Register Input--->
 </body>
 
 </html>

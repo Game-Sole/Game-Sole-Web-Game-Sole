@@ -1,29 +1,47 @@
 /*STYLING:*/
+
 @font-face {
     font-family: "VCR OSD Mono";
     src: url("../Asset/Font/VCR_OSD_MONO_1.001.ttf");
 }
-*{
+
+* {
     font-family: "VCR OSD Mono";
 }
 
-body{
+body {
     background-image: url('../images/WebBG.jpeg');
     background-size: cover;
 }
 
-.Homepage-navbar img{
-    height: 80px;
-}
-.Menu-navbar{
-    padding-left: 20px;
+p {
+    font-size: 12pt;
 }
 
-h1{
+.Homepage-navbar img {
+    height: 80px;
+    float: left;
+}
+
+.Menu-navbar {
+    background-color: #a49d91;
+    clear: both;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    height: 40px;
+}
+
+.Menu-navbar img {
+    height: 30px;
+    float: left;
+    padding: 5px;
+}
+
+h1 {
     text-align: center;
 }
 
-form{
+form {
     color: #4d483e;
     line-height: 25px;
     background-color: #c6c0b6;

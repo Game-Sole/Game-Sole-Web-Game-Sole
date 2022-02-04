@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!--- Page title --->
+
 <head>
     <link rel="stylesheet" href="../CSS file/ShopPage.css">
     <title>Game Sole|Console online shop|</title>
@@ -8,35 +10,52 @@
 
 <body>
     <header>
+        <!--- Contain Web logo, login, and register button link to another page --->
         <div class="Logo-navbar">
+
+            <!--- Web logo link to homepage --->
             <nav class="Homepage-navbar">
                 <a href="Homepage.html"><img src="../images/Logo_Rev2.png" /></a>
             </nav>
-            <h1>Here you go</h1>
+
+            <!--- Register logo link to register page--->
             <nav class="Register-navbar">
                 <a href="Register.html"><img src="../images/2U Button Yellow Register Idle.png" / alt="back"></a>
+                <!--- another version of images to use 'Hover' in CSS -->
                 <a href="Register.html"><img src="../images/2U Button Yellow Register.png" / class="img-top" alt="front"></a>
             </nav>
+
+            <!--- Login logo link to Login page--->
             <nav class="Login-navbar">
                 <a href="Login.html"><img src="../images/2U Button Cream Idle.png" / alt="back"></a>
+                <!--- another version of images to use 'Hover' in CSS -->
                 <a href="Login.html"><img src="../images/2U Button Cream Press.png" / class="img-top" alt="front"></a>
             </nav>
         </div>
     </header>
+
+    <!---Navigation bar contain Homepage, ShopPage, and About US button link to another page --->
     <nav class="Menu-navbar">
+
+        <!--- Homepage button link to Home page --->
         <nav class="Homepage">
             <a href="Homepage.html"><img src="../images/Navigation Bar Home.png" /></a>
         </nav>
+
+        <!--- Shopping button link to Shop page --->
         <nav class="Shopping">
             <a href="ShopPage.html"><img src="../images/Navigation Bar Shop Press.png" /></a>
         </nav>
+
+        <!--- About Us button link to About US page --->
         <nav class="About US">
             <a href="AboutUs.html"><img src="../images/Navigation Bar About Us Idle.png" /></a>
         </nav>
     </nav>
+
+    <!--- Contain a searching option --->
     <div class="sidenav">
-        <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category"
-            pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+">
+        <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category" pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+">
 
         <button class="dropdown-btn">Video game/Game player/Controller
             <i class="fa fa-caret-down"></i>
@@ -69,9 +88,10 @@
             <li><a href='#'>handheld console player</a></li>
             <li><a href='#'>home console player</a></li>
         </div>
-
     </div>
+    <!--- Contain a searching option --->
 
+    <!--- Item Description --->
     <div class="main">
         <h2>Result</h2>
         <article>
@@ -83,14 +103,16 @@
             <label for="Description">One of the oldest home console game player from second generation</label>
         </article>
     </div>
+    <!--- Item Description --->
 
+    <!--- Javascript function for drop down button --->
     <script>
-        /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+        // Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict
         var dropdown = document.getElementsByClassName("dropdown-btn");
         var i;
 
         for (i = 0; i < dropdown.length; i++) {
-            dropdown[i].addEventListener("click", function () {
+            dropdown[i].addEventListener("click", function() {
                 this.classList.toggle("active");
                 var dropdownContent = this.nextElementSibling;
                 if (dropdownContent.style.display === "block") {
@@ -101,7 +123,7 @@
             });
         }
     </script>
-    
+
 </body>
 
 </html>
