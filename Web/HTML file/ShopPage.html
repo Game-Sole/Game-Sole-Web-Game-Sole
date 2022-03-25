@@ -22,7 +22,8 @@
             <nav class="Register-navbar">
                 <a href="Register.html"><img src="../images/2U Button Yellow Register Idle.png" / alt="back"></a>
                 <!--- another version of images to use 'Hover' in CSS -->
-                <a href="Register.html"><img src="../images/2U Button Yellow Register.png" / class="img-top" alt="front"></a>
+                <a href="Register.html"><img src="../images/2U Button Yellow Register.png" / class="img-top"
+                        alt="front"></a>
             </nav>
 
             <!--- Login logo link to Login page--->
@@ -55,38 +56,39 @@
 
     <!--- Contain a searching option --->
     <div class="sidenav">
-        <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category" pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+">
+        <input class="search_bar" type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category"
+            pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+">
 
         <button class="dropdown-btn">Video game/Game player/Controller
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <li><a href='#'>Video game</a></li>
-            <li><a href='#'>Game player</a></li>
-            <li><a href='#'>Controller</a></li>
+            <label class="container">Video game<input type="checkbox"><span class="checkmark"></span></label>
+            <label class="container">Game player<input type="checkbox"><span class="checkmark"></span></label>
+            <label class="container">Controller<input type="checkbox"><span class="checkmark"></span></label>
         </div>
 
         <button class="dropdown-btn">Period generation
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <li><a href='#'>First generation</a></li>
-            <li><a href='#'>Second generation</a></li>
-            <li><a href='#'>Third generation</a></li>
-            <li><a href='#'>Fourth generation</a></li>
-            <li><a href='#'>Fifth generation</a></li>
-            <li><a href='#'>Sixth generation</a></li>
-            <li><a href='#'>Seventh generation</a></li>
-            <li><a href='#'>Eighth generation</a></li>
-            <li><a href='#'>Ninth generation</a></li>
+            <label class="container">First generation<input type="checkbox"><span class="checkmark"></span></label>
+            <label class="container">Second generation<input type="checkbox"><span class="checkmark"></span></label>
+            <label class="container">Third generation<input type="checkbox"><span class="checkmark"></span></label>
+            <label class="container">Fourth generation<input type="checkbox"><span class="checkmark"></span></label>
+            <label class="container">Fifth generation<input type="checkbox"><span class="checkmark"></span></label>
+            <label class="container">Sixth generation<input type="checkbox"><span class="checkmark"></span></label>
+            <label class="container">Seventh generation<input type="checkbox"><span class="checkmark"></span></label>
+            <label class="container">Eighth generation<input type="checkbox"><span class="checkmark"></span></label>
+            <label class="container">Ninth generation<input type="checkbox"><span class="checkmark"></span></label>
         </div>
 
         <button class="dropdown-btn">Console game player type
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <li><a href='#'>handheld console player</a></li>
-            <li><a href='#'>home console player</a></li>
+            <label class="container">handheld console player<input type="checkbox"><span class="checkmark"></span></label>
+            <label class="container">home console player<input type="checkbox"><span class="checkmark"></span></label>
         </div>
     </div>
     <!--- Contain a searching option --->
@@ -146,7 +148,7 @@
         var i;
 
         for (i = 0; i < dropdown.length; i++) {
-            dropdown[i].addEventListener("click", function() {
+            dropdown[i].addEventListener("click", function () {
                 this.classList.toggle("active");
                 var dropdownContent = this.nextElementSibling;
                 if (dropdownContent.style.display === "block") {
