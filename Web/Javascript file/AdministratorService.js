@@ -1,6 +1,7 @@
 let express = require("express"),
   mysql = require("mysql2"),
   cors = require("cors"),
+  fs = require("fs");
   app = express(),
   port = process.env.port || 6098,
   route = express.Router();
@@ -30,16 +31,14 @@ app.get("/product/:id", function (req, res) {
     function (error, results) {
       if (error) throw error;
       return res.send({
-        error: false,
-        data: results[0],
-        message: "Product retrieved",
+        error: false, data: results[0], message: "Product retrieved",
       });
     }
   );
 });
-
 //View
 app.get("/products", function (req, res) {
+  //jpeg file in the base64 format.
   dbConn.query("SELECT * FROM PRODUCT", function (error, results) {
     if (error) throw error;
     return res.send({ error: false, data: results, message: "Products list." });
@@ -74,19 +73,19 @@ app.put("/product/:id", function (req, res) {
   dbConn.query(
     "UPDATE PRODUCT SET WHERE PROD_ID='" + req.params.id,
     +"', PROD_Name='" +
-      req.body.PROD_Name +
-      "', PROD_Price='" +
-      req.body.PROD_Price +
-      "', PROD_Description='" +
-      req.body.PROD_Description +
-      //"', PROD_Image='" +
-      //req.body.PROD_Image +
-      "' WHERE PROD_Type=" +
-      req.body.PROD_Type +
-      "' WHERE PROD_Period_generation=" +
-      req.body.PROD_Period_generation +
-      "' WHERE PROD_Console_type=" +
-      req.body.PROD_Console_type,
+    req.body.PROD_Name +
+    "', PROD_Price='" +
+    req.body.PROD_Price +
+    "', PROD_Description='" +
+    req.body.PROD_Description +
+    //"', PROD_Image='" +
+    //req.body.PROD_Image +
+    "' WHERE PROD_Type=" +
+    req.body.PROD_Type +
+    "' WHERE PROD_Period_generation=" +
+    req.body.PROD_Period_generation +
+    "' WHERE PROD_Console_type=" +
+    req.body.PROD_Console_type,
     function (error, results) {
       if (error) throw error;
       return res.send({
@@ -164,19 +163,19 @@ app.put("/user/:id", function (req, res) {
   dbConn.query(
     "UPDATE USER SET WHERE USER_ID='" + req.params.id,
     +"', USER_Firstname='" +
-      req.body.USER_Firstname +
-      "', USER_Lastname='" +
-      req.body.USER_Lastname +
-      "', USER_Telephone='" +
-      req.body.USER_Telephone +
-      "', USER_Address='" +
-      req.body.USER_Address +
-      "' WHERE USER_EMAIL=" +
-      req.body.USER_EMAIL +
-      "' WHERE USER_Password=" +
-      req.body.USER_Password +
-      "' WHERE USER_Role=" +
-      req.body.USER_Role,
+    req.body.USER_Firstname +
+    "', USER_Lastname='" +
+    req.body.USER_Lastname +
+    "', USER_Telephone='" +
+    req.body.USER_Telephone +
+    "', USER_Address='" +
+    req.body.USER_Address +
+    "' WHERE USER_EMAIL=" +
+    req.body.USER_EMAIL +
+    "' WHERE USER_Password=" +
+    req.body.USER_Password +
+    "' WHERE USER_Role=" +
+    req.body.USER_Role,
     function (error, results) {
       if (error) throw error;
       return res.send({

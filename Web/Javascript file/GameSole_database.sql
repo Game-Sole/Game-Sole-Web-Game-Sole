@@ -1,3 +1,5 @@
+ALTER USER 'root'@'localhost' IDENTIFIED BY '';
+
 DROP DATABASE IF EXISTS `GameSole`;
 CREATE DATABASE IF NOT EXISTS `GameSole`;
 USE `GameSole`;
@@ -36,7 +38,7 @@ CREATE TABLE `PRODUCT` (
     `PROD_Name` VARCHAR(100) NOT NULL,
     `PROD_Price` INT NOT NULL,
     `PROD_Description` VARCHAR(100) DEFAULT NULL,
-    `PROD_Image` LONGBLOB NOT NULL,
+    `PROD_Image` VARCHAR(255) NOT NULL,
     `PROD_Type` VARCHAR(13) NOT NULL,
     `PROD_Period_generation` VARCHAR(10) DEFAULT NULL,
     `PROD_Console_type` VARCHAR(25) DEFAULT NULL,
@@ -72,16 +74,16 @@ INSERT INTO `Login_Info` (`LOGIN_ID`, `USER_ID`, `USER_EMAIL`, `USER_Password`, 
 (1011105, 'u1000000011', 'Helenny@gmail.com', 'L_azyapple61', '2022-02-15');
     
 INSERT INTO `PRODUCT` (`PROD_ID`, `PROD_Name`, `PROD_Price`, `PROD_Description`, `PROD_Image`, `PROD_Type`, `PROD_Period_generation`, `PROD_Console_type`) VALUES
-(00000001, 'Sonic Ultimate Genesis Collection', 301, 'A Sega Games from 2009 play on Xbox 360', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Images\\Product\\Sonic.jpg'), 'Video game', 'Seventh', NULL),
-(00000002, 'Magnavox Odyssey 2', 5988, 'One of the oldest home console game player from second generation', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Images\\Product\\Odyssey.jpg'), 'Game player', 'Second', 'home console player'),
-(00000003, 'PS5 : DualSense Wireless Controller', 2690, 'A Wireless Controller for playstation 5 DualSense', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Images\\Product\\DualSense Controller.jpg'), 'Controller', 'Ninth', 'home console player'),
-(00000004, 'Microsoft Xbox One S 1TB', 8189, 'A console game player from microsoft', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Images\\Product\\xbox 1.jpg'), 'Game player', 'Seventh', 'home console player'),
-(00000005, 'Game boy', 3250, 'A first version of handheld in game history', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Images\\Product\\Game-Boy-Original.jpg'), 'Game player', 'First', 'handheld console player'),
-(00000006, 'Finding Nemo', '157', NULL, LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Images\\Product\\nemo.jpg'), 'Video game', 'Fourth', NULL),
-(00000007, 'PSP Go', 4099, 'Portable playstation', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Images\\Product\\PSP Go.jpg'), 'Game player', 'Sixth', 'handheld console player'),
-(00000008, 'Dragon Age 2', 281, 'An action role-playing video game developed by BioWare', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Images\\Product\\Dragonage.jpg'), 'Video game', 'Sixth', NULL),
-(00000009, 'The Evil Within 2', 359, NULL, LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Images\\Product\\The Evil Within 2.jpg'), 'Video game', 'Eighth', NULL),
-(00000010, 'Mortal Kombat X', 221, 'A 2015 fighting video game developed by NetherRealm Studios', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Images\\Product\\mortalcombatx.jpg'), 'Video game', 'Seventh', NULL),
-(00000011, 'Steam Deck', 13399, NULL, LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Images\\Product\\Steam_Deck.png'), 'Game player', 'Ninth', 'handheld console player'),
-(00000012, 'Sid Meiers Civilization Revolution', 219, NULL, LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Images\\Product\\Sid Meier.jpg'), 'Video game', 'Fifth', NULL),
-(00000013, 'Nintendo 64', 2600, 'A home video game console developed by Nintendo', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Images\\Product\\nintendo64.jpg'), 'Game player', 'Fifth', 'home console player');
+(00000001, 'Sonic Ultimate Genesis Collection', 301, 'A Sega Games from 2009 play on Xbox 360', ('https://github.com/Game-Sole/Game-Sole-Web-Game-Sole/Web/Images/Product/Sonic.jpg'), 'Video game', 'Seventh', NULL),
+(00000002, 'Magnavox Odyssey 2', 5988, 'One of the oldest home console game player from second generation', ('https://github.com/Game-Sole/Game-Sole-Web-Game-Sole/Web/Images/Product/Odyssey.jpg'), 'Game player', 'Second', 'home console player'),
+(00000003, 'PS5 : DualSense Wireless Controller', 2690, 'A Wireless Controller for playstation 5 DualSense', ('https://github.com/Game-Sole/Game-Sole-Web-Game-Sole/Web/Images/Product/DualSense Controller.jpg'), 'Controller', 'Ninth', 'home console player'),
+(00000004, 'Microsoft Xbox One S 1TB', 8189, 'A console game player from microsoft', ('https://github.com/Game-Sole/Game-Sole-Web-Game-Sole/Web/Images/Product/xbox 1.jpg'), 'Game player', 'Seventh', 'home console player'),
+(00000005, 'Game boy', 3250, 'A first version of handheld in game history', ('https://github.com/Game-Sole/Game-Sole-Web-Game-Sole/Web/Images/Product/Game-Boy-Original.jpg'), 'Game player', 'First', 'handheld console player'),
+(00000006, 'Finding Nemo', '157', NULL, ('https://github.com/Game-Sole/Game-Sole-Web-Game-Sole/Web/Images/Product/nemo.jpg'), 'Video game', 'Fourth', NULL),
+(00000007, 'PSP Go', 4099, 'Portable playstation', ('https://github.com/Game-Sole/Game-Sole-Web-Game-Sole/Web/Images/Product/PSP Go.jpg'), 'Game player', 'Sixth', 'handheld console player'),
+(00000008, 'Dragon Age 2', 281, 'An action role-playing video game developed by BioWare', ('https://github.com/Game-Sole/Game-Sole-Web-Game-Sole/Web/Images/Product/Dragonage.jpg'), 'Video game', 'Sixth', NULL),
+(00000009, 'The Evil Within 2', 359, NULL, ('https://github.com/Game-Sole/Game-Sole-Web-Game-Sole/Web/Images/Product/The Evil Within 2.jpg'), 'Video game', 'Eighth', NULL),
+(00000010, 'Mortal Kombat X', 221, 'A 2015 fighting video game developed by NetherRealm Studios', ('https://github.com/Game-Sole/Game-Sole-Web-Game-Sole/Web/Images/Product/mortalcombatx.jpg'), 'Video game', 'Seventh', NULL),
+(00000011, 'Steam Deck', 13399, NULL, ('https://github.com/Game-Sole/Game-Sole-Web-Game-Sole/Web/Images/Product/Steam_Deck.png'), 'Game player', 'Ninth', 'handheld console player'),
+(00000012, 'Sid Meiers Civilization Revolution', 219, NULL, ('https://github.com/Game-Sole/Game-Sole-Web-Game-Sole/Web/Images/Product/Sid Meier.jpg'), 'Video game', 'Fifth', NULL),
+(00000013, 'Nintendo 64', 2600, 'A home video game console developed by Nintendo', ('https://github.com/Game-Sole/Game-Sole-Web-Game-Sole/Web/Images/Product/nintendo64.jpg'), 'Game player', 'Fifth', 'home console player');
