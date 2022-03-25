@@ -13,24 +13,19 @@ CREATE TABLE `USER` (
     `USER_EMAIL` VARCHAR(100) NOT NULL,
     `USER_Password` VARCHAR(30) NOT NULL,
     `USER_Role` VARCHAR(13) NOT NULL DEFAULT 'Client',
-    PRIMARY KEY (`USER_ID`, `USER_EMAIL`),
+    PRIMARY KEY (`USER_ID`),
     CONSTRAINT chk_USER_Role CHECK (USER_Role IN ('Administator' , 'Client'))
 );
 
 ALTER TABLE `USER` ADD INDEX FK_USER_ID (USER_ID);
-ALTER TABLE `USER` ADD INDEX FK_USER_EMAIL (USER_EMAIL);
 
 CREATE TABLE `Login_Info` (
-    `LOGIN_ID` INT NOT NULL,
+    `LOGIN_ID` INT NOT NULL AUTO_INCREMENT,
     `USER_ID` VARCHAR(11) NOT NULL,
-    `USER_EMAIL` VARCHAR(100) NOT NULL,
-    `USER_Password` VARCHAR(30) NOT NULL,
     `LOGIN_Log` DATE NOT NULL,
     PRIMARY KEY (`LOGIN_ID`),
     CONSTRAINT FK_USER_ID FOREIGN KEY (USER_ID)
-        REFERENCES `USER` (USER_ID),
-    CONSTRAINT FK_USER_EMAIL FOREIGN KEY (USER_EMAIL)
-        REFERENCES `USER` (USER_EMAIL)
+        REFERENCES `USER` (USER_ID) ON DELETE CASCADE
 );
 
 CREATE TABLE `PRODUCT` (
@@ -60,18 +55,18 @@ INSERT INTO `USER` (`USER_ID`, `USER_Firstname`, `USER_Lastname`, `USER_Telephon
 ('u1000000010', 'Selen', 'Bush', '9689214681', 'Hawaii 96801', 'selena@hotmail.com', 'Spicyroll60-', 'Client'),
 ('u1000000011', 'Helena', 'Stone', '3452105426', 'Virginia 24517', 'Helenny@gmail.com', 'L_azyapple61', 'Administator');
 
-INSERT INTO `Login_Info` (`LOGIN_ID`, `USER_ID`, `USER_EMAIL`, `USER_Password`, `LOGIN_Log`) VALUES
-(1010547, 'u1000000001', 'SamWill@gmail.com', 'Firstmustang35*', '2022-02-02'),
-(1010625, 'u1000000002', 'Kruger1996@hotmail.com', 'Jadewheel89-', '2022-02-04'),
-(1010628, 'u1000000003', 'Rosello@gmail.com', 'Loudkey99_', '2022-02-04'),
-(1010748, 'u1000000004', 'ANNIE1234@gmail.com', 'Freeglue78=', '2022-02-05'),
-(1010895, 'u1000000005', 'mexicanJOE@hotmail.com', 'Muddytiger37+', '2022-02-06'),
-(1010896, 'u1000000006', 'Zebv1asd@gmail.com', 'Freesilver36/', '2022-02-06'),
-(1010900, 'u1000000007', 'Jonny8921@hotmail.com', 'Flatmonkey38#', '2022-02-07'),
-(1010950, 'u1000000008', 'AMangel@gmail.com', 'Lumpylace59+', '2022-02-09'),
-(1010987, 'u1000000009', 'jamebond@hotmail.com', 'Emptypaste49*', '2022-02-10'),
-(1011021, 'u1000000010', 'selena@hotmail.com', 'Spicyroll60-', '2022-02-12'),
-(1011105, 'u1000000011', 'Helenny@gmail.com', 'L_azyapple61', '2022-02-15');
+INSERT INTO `Login_Info` (`LOGIN_ID`, `USER_ID`, `LOGIN_Log`) VALUES
+(1010547, 'u1000000001', '2022-02-02'),
+(1010625, 'u1000000002', '2022-02-04'),
+(1010628, 'u1000000003', '2022-02-04'),
+(1010748, 'u1000000004', '2022-02-05'),
+(1010895, 'u1000000005', '2022-02-06'),
+(1010896, 'u1000000006', '2022-02-06'),
+(1010900, 'u1000000007', '2022-02-07'),
+(1010950, 'u1000000008', '2022-02-09'),
+(1010987, 'u1000000009', '2022-02-10'),
+(1011021, 'u1000000010', '2022-02-12'),
+(1011105, 'u1000000011', '2022-02-15');
     
 INSERT INTO `PRODUCT` (`PROD_ID`, `PROD_Name`, `PROD_Price`, `PROD_Description`, `PROD_Image`, `PROD_Type`, `PROD_Period_generation`, `PROD_Console_type`) VALUES
 (00000001, 'Sonic Ultimate Genesis Collection', 301, 'A Sega Games from 2009 play on Xbox 360', ('https://github.com/Game-Sole/Game-Sole-Web-Game-Sole/Web/Images/Product/Sonic.jpg'), 'Video game', 'Seventh', NULL),
