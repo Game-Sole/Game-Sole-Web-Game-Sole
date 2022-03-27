@@ -6,7 +6,6 @@ let express = require("express"),
     fs = require("fs");
 app = express(),
     port = process.env.port || 4301,
-    route = express.Router();
 app.use(session({
     secret: 'secret',
     resave: true,
@@ -14,6 +13,7 @@ app.use(session({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+const router = require("./router");
 
 //Connect to root and password for databasee
 const dotenv = require("dotenv");
@@ -28,11 +28,8 @@ let dbConn = mysql.createConnection({
 });
 
 app.use(express.static(path.join(__dirname, '/../')));
-// http://localhost:4301/Login
-app.get('/Login', function (req, res) {
-    // Render login template
-    res.sendFile(path.join(__dirname, '/../HTML file/Login.html' ))
-});
+
+app.use(router);
 
 app.post('/Authentication', function (req, res) {
     // Capture the input fields
@@ -54,12 +51,6 @@ app.post('/Authentication', function (req, res) {
         res.send('Please enter Email and Password!');
         res.end();
     }
-});
-
-// http://localhost:4301/Homepage
-app.get('/Homepage', function (req, res) {
-    // Render login template
-    res.sendFile(path.join(__dirname + "/../HTML file/Homepage.html"));
 });
 
 app.listen(port);
