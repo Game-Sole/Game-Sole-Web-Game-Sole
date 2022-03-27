@@ -11,7 +11,7 @@ CREATE TABLE `USER` (
     `USER_Telephone` CHAR(10) NOT NULL,
     `USER_Address` VARCHAR(100) NOT NULL,
     `USER_EMAIL` VARCHAR(100) NOT NULL,
-    `USER_Password` VARCHAR(30) NOT NULL,
+    `USER_Password` VARCHAR(255) NOT NULL,
     `USER_Role` VARCHAR(13) NOT NULL DEFAULT 'Client',
     PRIMARY KEY (`USER_ID`),
     CONSTRAINT chk_USER_Role CHECK (USER_Role IN ('Administator' , 'Client'))

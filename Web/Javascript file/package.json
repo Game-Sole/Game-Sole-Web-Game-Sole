@@ -2,9 +2,9 @@
   "name": "administrator",
   "version": "1.0.0",
   "description": "",
-  "main": "AdministratorService.js",
+  "main": "login.js",
   "scripts": {
-    "start": "nodemon AdministratorService.js"
+    "start": "nodemon concurrently --kill-others 'login.js' 'AdministratorService.js'"
   },
   "repository": {
     "type": "git",
@@ -14,9 +14,11 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.2",
+    "concurrently": "^7.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "express-session": "^1.17.2",
     "fs": "^0.0.1-security",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.15"
