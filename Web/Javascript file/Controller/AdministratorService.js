@@ -14,14 +14,12 @@ app.use(
 const dotenv = require("dotenv");
 dotenv.config();
 
-//create the connection the database.
 let dbConn = mysql.createConnection({
   host: process.env.host,
   user: process.env.user,
   password: process.env.password,
   database: process.env.name,
 });
-
 //Products or services in the system.
 
 //Search
@@ -29,25 +27,25 @@ let dbConn = mysql.createConnection({
 // method: get
 // URL: http://localhost:4301/product/1
 // URL: http://localhost:4301/product/2
-app.get("/product/:id", function (req, res) {
+const Get1Product = (req, res) => {
   let sqlQuery = "SELECT * FROM PRODUCT WHERE PROD_ID=" + req.params.id;
   let query = dbConn.query(sqlQuery, (err, results) => {
     if (err) throw err;
     return res.send({ error: false, data: results[0], message: 'Product retrieved' });
   });
-});
+};
 
 //View
 // Testing get all product
 // method: get
 // URL: http://localhost:4301/products
-app.get("/products", function (req, res) {
+const GetAllProduct = (req, res) => {
   //jpeg file in the base64 format.
   dbConn.query("SELECT * FROM PRODUCT", function (error, results) {
     if (error) throw error;
     return res.send({ error: false, data: results, message: "Products list." });
   });
-});
+};
 
 //Insert
 // Testing get insert new product
@@ -67,7 +65,7 @@ app.get("/products", function (req, res) {
 // }
 //
 // {
-//   "PROD_ID": "102",
+//   "PROD_ID": 102,
 //   "PROD_Name": "Wii console",
 //   "PROD_Price": "5990",
 //   "PROD_Description": "NULL",
@@ -76,7 +74,7 @@ app.get("/products", function (req, res) {
 //   "PROD_Period_generation": "Seventh",
 //   "PROD_Console_type": "home console player"
 // }
-app.post("/product", function (req, res) {
+const PostProduct = (req, res) => {
   let data = {
     PROD_ID: req.body.PROD_ID,
     PROD_Name: req.body.PROD_Name,
@@ -92,7 +90,7 @@ app.post("/product", function (req, res) {
     if (err) throw err;
     return res.send({ error: false, data: results.affectedRows, message: 'New product has been created successfully.' });
   });
-});
+};
 
 //Update
 // Testing update product info
@@ -120,60 +118,59 @@ app.post("/product", function (req, res) {
 //   "PROD_Period_generation": "Seventh",
 //   "PROD_Console_type": "home console player"
 // }
-app.put("/product/:id", function (req, res) {
+const PutProduct = (req, res) => {
   let sqlQuery = "UPDATE PRODUCT SET PROD_Name='" + req.body.PROD_Name + "', PROD_Price='" + req.body.PROD_Price + "', PROD_Description='" + req.body.PROD_Description + "', PROD_Image='" + req.body.PROD_Image + "', PROD_Type='" + req.body.PROD_Type + "', PROD_Period_generation='" + req.body.PROD_Period_generation + "', PROD_Console_type='" + req.body.PROD_Console_type + "' WHERE PROD_ID=" + req.params.id;
   let query = dbConn.query(sqlQuery, (err, results) => {
     if (err) throw err;
     return res.send({ error: false, data: results.affectedRows, message: 'Product has been updated successfully.' })
   });
-});
+};
 
 //Delete
 // Testing delete product
 // method: delete
 // URL: http://localhost:4301/product/1
 // URL: http://localhost:4301/product/2
-app.delete("/product/:id", function (req, res) {
+const DeleteProduct = (req, res) => {
   let sqlQuery = "DELETE FROM PRODUCT WHERE PROD_ID=" + req.params.id + "";
   let query = dbConn.query(sqlQuery, (err, results) => {
     if (err) throw err;
     return res.send({ error: false, data: results.affectedRows, message: 'Product has been deleted successfully.' });
   });
-});
+};
 
 //Users in the system.
 //Search
 // Testing get User information
 // method: get
-// URL: http://localhost:4301/user/u1000000001
-// URL: http://localhost:4301/user/u1000000002
-app.get("/user/:id", function (req, res) {
-  let sqlQuery = "SELECT * FROM USER WHERE USER_ID=" + "'" + req.params.id + "'";
+// URL: http://localhost:4301/user/1000000001
+// URL: http://localhost:4301/user/1000000002
+const Get1User = (req, res) => {
+  let sqlQuery = "SELECT * FROM USER WHERE USER_ID=" + req.params.id;
   let query = dbConn.query(sqlQuery, (err, results) => {
     if (err) throw err;
     return res.send({ error: false, data: results[0], message: 'User Information retrieved' });
   });
-});
+};
 
 //View
 // Testing get all User information
 // method: get
 // URL: http://localhost:4301/users
-app.get("/users", function (req, res) {
+const GetAllUser = (req, res) => {
   dbConn.query("SELECT * FROM USER", function (error, results) {
     if (error) throw error;
     return res.send({ error: false, data: results, message: "Users list." });
   });
-});
+};
 
 //Insert
-// Testing get insert new product
+// Testing insert new User
 // method: post
 // URL: http://localhost:4301/user
 // body: raw (JSON)
 
 // {
-//  "USER_ID": "u1000000101",
 //  "USER_Firstname": "Chayanin",
 //  "USER_Lastname": "Boonnak",
 //  "USER_Telephone": "0868224666",
@@ -184,7 +181,6 @@ app.get("/users", function (req, res) {
 // }
 //
 // {
-//  "USER_ID": "u1000000102",
 //  "USER_Firstname": "Bryt",
 //  "USER_Lastname": "Berlin",
 //  "USER_Telephone": "0214785905",
@@ -193,9 +189,8 @@ app.get("/users", function (req, res) {
 //  "USER_Password": "Hoaemsd5211=",
 //  "USER_Role": "Client"
 // }
-app.post("/user", function (req, res) {
+const PostUser = (req, res) => {
   let data = {
-    USER_ID: req.body.USER_ID,
     USER_Firstname: req.body.USER_Firstname,
     USER_Lastname: req.body.USER_Lastname,
     USER_Telephone: req.body.USER_Telephone,
@@ -209,14 +204,14 @@ app.post("/user", function (req, res) {
     if (err) throw err;
     return res.send({ error: false, data: results.affectedRows, message: 'New User information has been created successfully.' });
   });
-});
+};
 
 //Update
 // Testing update user info
 // method: put
 // body: raw (JSON)
 //
-// URL: http://localhost:4301/user/u1000000001
+// URL: http://localhost:4301/user/1000000001
 // {
 //  "USER_Firstname": "Chayanin",
 //  "USER_Lastname": "Boonnak",
@@ -227,7 +222,7 @@ app.post("/user", function (req, res) {
 //  "USER_Role": "Client"
 // }
 //
-// URL: http://localhost:4301/user/u1000000002
+// URL: http://localhost:4301/user/1000000002
 // {
 //  "USER_Firstname": "Chantaton",
 //  "USER_Lastname": "Visejton",
@@ -237,26 +232,36 @@ app.post("/user", function (req, res) {
 //  "USER_Password": "Qweetrt123-",
 //  "USER_Role": "Administator"
 // }
-app.put("/user/:id", function (req, res) {
+const PutUser = (req, res) => {
   let sqlQuery = "UPDATE USER SET USER_Firstname='" + req.body.USER_Firstname + "', USER_Lastname='" + req.body.USER_Lastname + "', USER_Telephone='" + req.body.USER_Telephone + "', USER_Address='" + req.body.USER_Address + "', USER_EMAIL='" + req.body.USER_EMAIL + "', USER_Password='" + req.body.USER_Password + "', USER_Role='" + req.body.USER_Role + "' WHERE USER_ID=" + "'" + req.params.id + "'";
   let query = dbConn.query(sqlQuery, (err, results) => {
     if (err) throw err;
     return res.send({ error: false, data: results.affectedRows, message: 'User information has been updated successfully.' })
   });
-});
+};
 
 //Delete
 // Testing delete User information
 // method: delete
-// URL: http://localhost:4301/user/u1000000003
-// URL: http://localhost:4301/user/u1000000004
-app.delete("/user/:id", function (req, res) {
+// URL: http://localhost:4301/user/1000000003
+// URL: http://localhost:4301/user/1000000004
+const DeleteUser = (req, res) => {
   let sqlQuery = "DELETE FROM USER WHERE USER.USER_ID=" + "'" + req.params.id + "'";
   let query = dbConn.query(sqlQuery, (err, results) => {
     if (err) throw err;
     return res.send({ error: false, data: results.affectedRows, message: 'User information has been deleted successfully.' });
   });
-});
+};
 
-app.listen(port);
-console.log("Running at Port " + port);
+module.exports = {
+  Get1Product,
+  GetAllProduct,
+  PostProduct,
+  PutProduct,
+  DeleteProduct,
+  Get1User,
+  GetAllUser,
+  PostUser,
+  PutUser,
+  DeleteUser
+};

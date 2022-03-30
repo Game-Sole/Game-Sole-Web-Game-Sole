@@ -4,9 +4,54 @@
 <!--- Page title --->
 
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="../CSS file/AboutUs.css">
     <title>Game Sole|About Us|</title>
 </head>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var value = getCookie("GameSoletoken");
+        $.ajax({
+            url: '/cookie',
+            type: 'POST',
+            data: { cookie: value },
+            datatype: 'json',
+            success: function (data) {
+                var obj = JSON.parse(data);
+                if (obj.role = "Administator") {
+                    $('.Register-navbar').hide();
+                    $('.Login-navbar').hide();
+                    $('.Logout-navbar').show();
+                    document.getElementById("User-email").innerHTML = "<p>" + "Admin: " + obj.email + "</p>";
+                } else if (obj.role = "Client") {
+                    $('.Register-navbar').hide();
+                    $('.Login-navbar').hide();
+                    $('.Logout-navbar').show();
+                    document.getElementById("User-email").innerHTML = "<p>" + obj.email + "</p>";
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('.Logout-navbar').hide();
+                $('.Register-navbar').show();
+                $('.Login-navbar').show();
+            }
+        });
+
+        $('.Logout-navbar').click(function () {
+            document.cookie = "GameSoletoken" + '=; Max-Age=-99999999;';
+            location.reload();
+        });
+    });
+    function getCookie(name) {
+        let cookie = {};
+        document.cookie.split(';').forEach(function (el) {
+            let [k, v] = el.split('=');
+            cookie[k.trim()] = v;
+        })
+        return cookie[name];
+    }
+</script>
 
 <body>
     <header>
@@ -22,7 +67,8 @@
             <nav class="Register-navbar">
                 <a href="Register.html"><img src="../images/2U Button Yellow Register Idle.png" / alt="back"></a>
                 <!--- another version of images to use 'Hover' in CSS -->
-                <a href="Register.html"><img src="../images/2U Button Yellow Register.png" / class="img-top" alt="front"></a>
+                <a href="Register.html"><img src="../images/2U Button Yellow Register.png" / class="img-top"
+                        alt="front"></a>
             </nav>
 
             <!--- Login logo link to Login page--->
@@ -30,6 +76,17 @@
                 <a href="Login.html"><img src="../images/2U Button Cream Idle.png" / alt="back"></a>
                 <!--- another version of images to use 'Hover' in CSS -->
                 <a href="Login.html"><img src="../images/2U Button Cream Press.png" / class="img-top" alt="front"></a>
+            </nav>
+
+            <!--- Logout logo to Logout--->
+            <nav class="Logout-navbar">
+                <a input type="image" name="Logout" src="../images/2U Button Red Logout Idle.png" / alt="back"></a>
+                <!--- another version of images to use 'Hover' in CSS -->
+                <a input type="image" name="Logout" src="../images/2U Button Red Logout Press.png" / class="img-top"
+                    alt="front"></a>
+            </nav>
+
+            <nav id="User-email">
             </nav>
         </div>
     </header>
@@ -56,12 +113,15 @@
     <!--- About US page article --->
     <article>
         <h2>What this website does and sold</h2>
-        <p>We are online shopping website that sold the all of console game and game console player. We got even a very first game console player ever the odyssey! We have all handheld console player and game including home console player. From the oldest
+        <p>We are online shopping website that sold the all of console game and game console player. We got even a very
+            first game console player ever the odyssey! We have all handheld console player and game including home
+            console player. From the oldest
             to the latest example the ps1 to ps5!</p>
     </article>
     <article>
         <h2>How we delivery</h2>
-        <p>When you place an order and we receive it just grab something to do and wait. We will pack the item into quality package to make sure it arrive in your hand safe and on time</p>
+        <p>When you place an order and we receive it just grab something to do and wait. We will pack the item into
+            quality package to make sure it arrive in your hand safe and on time</p>
     </article>
     <div class="All-member-images">
         <figure>

@@ -4,9 +4,33 @@
 <!--- Page title --->
 
 <head>
-    <link rel= "stylesheet" href= "../CSS file/Login.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="../CSS file/Login.css">
     <title>|Login|</title>
 </head>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var value = getCookie("GameSoletoken");
+        $.ajax({
+            url: '/cookie',
+            type: 'POST',
+            data: { cookie: value },
+            datatype: 'json',
+            success: function (data) {
+                document.location.href = '/Homepage.html';
+            }
+        });
+    });
+    function getCookie(name) {
+        let cookie = {};
+        document.cookie.split(';').forEach(function (el) {
+            let [k, v] = el.split('=');
+            cookie[k.trim()] = v;
+        })
+        return cookie[name];
+    }
+</script>
 
 <body>
     <header>
@@ -41,12 +65,13 @@
 
     <h1>Login</h1>
     <!--- Login Input--->
-    <form action="/Authentication" method="post">
+    <form action="/Login" method="post">
         <fieldset>
             <label for="UserEmail">Email</label><br>
             <input type="text" name="UserEmail" pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+"><br>
             <label for="UserPassword">Password</label><br>
-            <input type="text" name="UserPassword" pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+"><br>
+            <input type="text" name="UserPassword"
+                pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+"><br>
             <button type="submit">Submit</button>
         </fieldset>
     </form>

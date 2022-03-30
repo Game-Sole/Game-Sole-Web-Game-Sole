@@ -8,6 +8,51 @@
     <title>Game Sole|Console online shop|</title>
 </head>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var value = getCookie("GameSoletoken");
+        $.ajax({
+            url: '/cookie',
+            type: 'POST',
+            data: { cookie: value },
+            datatype: 'json',
+            success: function (data) {
+                var obj = JSON.parse(data);
+                if (obj.role = "Administator") {
+                    $('.Register-navbar').hide();
+                    $('.Login-navbar').hide();
+                    $('.Logout-navbar').show();
+                    document.getElementById("User-email").innerHTML = "<p>" + "Admin: " + obj.email + "</p>";
+                } else if (obj.role = "Client") {
+                    $('.Register-navbar').hide();
+                    $('.Login-navbar').hide();
+                    $('.Logout-navbar').show();
+                    document.getElementById("User-email").innerHTML = "<p>" + obj.email + "</p>";
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('.Logout-navbar').hide();
+                $('.Register-navbar').show();
+                $('.Login-navbar').show();
+                document.location.href = '/Login.html';
+            }
+        });
+
+        $('.Logout-navbar').click(function () {
+            document.cookie = "GameSoletoken" + '=; Max-Age=-99999999;';
+            location.reload();
+        });
+    });
+    function getCookie(name) {
+        let cookie = {};
+        document.cookie.split(';').forEach(function (el) {
+            let [k, v] = el.split('=');
+            cookie[k.trim()] = v;
+        })
+        return cookie[name];
+    }
+</script>
+
 <body>
     <header>
         <!--- Contain Web logo, login, and register button link to another page --->
@@ -22,7 +67,8 @@
             <nav class="Register-navbar">
                 <a href="Register.html"><img src="../images/2U Button Yellow Register Idle.png" / alt="back"></a>
                 <!--- another version of images to use 'Hover' in CSS -->
-                <a href="Register.html"><img src="../images/2U Button Yellow Register.png" / class="img-top" alt="front"></a>
+                <a href="Register.html"><img src="../images/2U Button Yellow Register.png" / class="img-top"
+                        alt="front"></a>
             </nav>
 
             <!--- Login logo link to Login page--->
@@ -30,6 +76,17 @@
                 <a href="Login.html"><img src="../images/2U Button Cream Idle.png" / alt="back"></a>
                 <!--- another version of images to use 'Hover' in CSS -->
                 <a href="Login.html"><img src="../images/2U Button Cream Press.png" / class="img-top" alt="front"></a>
+            </nav>
+
+            <!--- Logout logo to Logout--->
+            <nav class="Logout-navbar">
+                <a input type="image" name="Logout" src="../images/2U Button Red Logout Idle.png" / alt="back"></a>
+                <!--- another version of images to use 'Hover' in CSS -->
+                <a input type="image" name="Logout" src="../images/2U Button Red Logout Press.png" / class="img-top"
+                    alt="front"></a>
+            </nav>
+
+            <nav id="User-email">
             </nav>
         </div>
     </header>
@@ -55,8 +112,8 @@
 
     <!--- Contain a searching option --->
     <div class="sidenav">
-        <input class="search_bar" type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category"
-            pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+">
+        <input class="search_bar" type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.."
+            title="Type in a category" pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+">
 
         <button class="dropdown-btn">Video game/Game player/Controller
             <i class="fa fa-caret-down"></i>
@@ -86,7 +143,8 @@
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <label class="container">handheld console player<input type="checkbox"><span class="checkmark"></span></label>
+            <label class="container">handheld console player<input type="checkbox"><span
+                    class="checkmark"></span></label>
             <label class="container">home console player<input type="checkbox"><span class="checkmark"></span></label>
         </div>
     </div>
@@ -113,7 +171,7 @@
         var i;
 
         for (i = 0; i < dropdown.length; i++) {
-            dropdown[i].addEventListener("click", function() {
+            dropdown[i].addEventListener("click", function () {
                 this.classList.toggle("active");
                 var dropdownContent = this.nextElementSibling;
                 if (dropdownContent.style.display === "block") {

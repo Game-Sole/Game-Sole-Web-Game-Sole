@@ -42,24 +42,38 @@
     <h1>Welcome to</h1>
     <h2>Please register</h2>
     <!--- Register Input--->
-    <form action="" method="post">
+    <form action="/Register" method="post">
         <fieldset>
             <label for="UserEmail">Email</label><br>
-            <input type="text" name="UserEmail" pattern="[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*" placeholder="name@example.com" required title="format: xxx@xxx.xxx"><br>
+            <input type="text" name="UserEmail"
+                pattern="[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*"
+                placeholder="name@example.com" required title="format: xxx@xxx.xxx"><br>
             <label for="UserPassword">Password</label><br>
-            <input type="text" name="UserPassword" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]).{8,}" placeholder="Xxxxxx1*" required title="At least 8 character and have at least one Lowercase, Uppercase, number, special character "><br>
+            <input type="text" name="UserPassword"
+                pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]).{8,}"
+                placeholder="Xxxxxx1*" required
+                title="At least 8 character and have at least one Lowercase, Uppercase, number, special character "><br>
             <label for="Userfirstname">Firstname</label><br>
-            <input type="text" name="Userfirstname" pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+" placeholder="xxxxxx" required title="At least 6 character"><br>
+            <input type="text" name="Userfirstname" pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+"
+                placeholder="xxxxxx"><br>
             <label for="Userlastname">Lastname</label><br>
-            <input type="text" name="Userlastname" pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+" placeholder="xxxxxx" required title="At least 6 character"><br>
+            <input type="text" name="Userlastname" pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+"
+                placeholder="xxxxxx"><br>
             <label for="UserAddress">Address</label><br>
-            <input type="text" name="UserAddress" pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+" placeholder="Xxxxxx 123456" required title="Example: Maxico 123456"><br>
+            <input type="text" name="UserAddress" pattern="[A-Za-z]+[ ]+[0-9]+"
+                placeholder="xxxxxxxxxxx-000000"><br>
             <label for="UserTel">Telephone number</label><br>
-            <input type="text" name="UserTel" pattern="[0-9]{10}" placeholder="0000000000" required title="please fill in your phone number"><br>
+            <input type="text" name="UserTel" pattern="[0-9]{10}" placeholder="0000000000" required
+                title="please fill in your phone number"><br>
             <button type="submit">Submit</button>
         </fieldset>
     </form>
     <!--- Register Input--->
+
+    <!--- Go to Login --->
+    <nav class="Login-navbar">
+        <a href="Login.html">I Already have ID</a>
+    </nav>
 </body>
 
 </html>

@@ -5,14 +5,14 @@ CREATE DATABASE IF NOT EXISTS `GameSole`;
 USE `GameSole`;
 
 CREATE TABLE `USER` (
-    `USER_ID` VARCHAR(11) NOT NULL,
+    `USER_ID` INT NOT NULL AUTO_INCREMENT,
     `USER_Firstname` VARCHAR(20) NOT NULL,
     `USER_Lastname` VARCHAR(20) NOT NULL,
     `USER_Telephone` CHAR(10) NOT NULL,
     `USER_Address` VARCHAR(100) NOT NULL,
     `USER_EMAIL` VARCHAR(100) NOT NULL,
     `USER_Password` VARCHAR(255) NOT NULL,
-    `USER_Role` VARCHAR(13) NOT NULL DEFAULT 'Client',
+    `USER_Role` VARCHAR(13) DEFAULT 'Client',
     PRIMARY KEY (`USER_ID`),
     CONSTRAINT chk_USER_Role CHECK (USER_Role IN ('Administator' , 'Client'))
 );
@@ -21,7 +21,7 @@ ALTER TABLE `USER` ADD INDEX FK_USER_ID (USER_ID);
 
 CREATE TABLE `Login_Info` (
     `LOGIN_ID` INT NOT NULL AUTO_INCREMENT,
-    `USER_ID` VARCHAR(11) NOT NULL,
+    `USER_ID` INT NOT NULL,
     `LOGIN_Log` DATE NOT NULL,
     PRIMARY KEY (`LOGIN_ID`),
     CONSTRAINT FK_USER_ID FOREIGN KEY (USER_ID)
@@ -43,30 +43,30 @@ CREATE TABLE `PRODUCT` (
 );
 
 INSERT INTO `USER` (`USER_ID`, `USER_Firstname`, `USER_Lastname`, `USER_Telephone`, `USER_Address`,`USER_EMAIL`,`USER_Password`,`USER_Role`) VALUES
-('u1000000001', 'Sam', 'Willer', '2043048999', 'Florida 32010', 'SamWill@gmail.com', 'Firstmustang35*', 'Administator'),
-('u1000000002', 'John', 'Kruger', '5876782145', 'Lowa 51002', 'Kruger1996@hotmail.com', 'Jadewheel89-', 'Client'),
-('u1000000003', 'Rose', 'Agnello', '3245878494', 'Idaho 83254', 'Rosello@gmail.com', 'Loudkey99_', 'Client'),
-('u1000000004', 'Anne', 'Miller', '3255500014', 'Texas 73331', 'ANNIE1234@gmail.com', 'Freeglue78=', 'Client'),
-('u1000000005', 'Joe', 'Jakob', '7852456444', 'Mexico 87001', 'mexicanJOE@hotmail.com', 'Muddytiger37+', 'Client'),
-('u1000000006', 'Zebra', 'Redfiend', '4285122489', 'Maine 04032', 'Zebv1asd@gmail.com', 'Freesilver36/', 'Client'),
-('u1000000007', 'John', 'Mayer', '8234554259', 'Ohio 44101', 'Jonny8921@hotmail.com', 'Flatmonkey38#', 'Administator'),
-('u1000000008', 'Angelena', 'Jolie', '9872347357', 'Nevada 89513', 'AMangel@gmail.com', 'Lumpylace59+', 'Client'),
-('u1000000009', 'Jame', 'Bone', '8745786483', 'Maryland 20201', 'jamebond@hotmail.com', 'Emptypaste49*', 'Client'),
-('u1000000010', 'Selen', 'Bush', '9689214681', 'Hawaii 96801', 'selena@hotmail.com', 'Spicyroll60-', 'Client'),
-('u1000000011', 'Helena', 'Stone', '3452105426', 'Virginia 24517', 'Helenny@gmail.com', 'L_azyapple61', 'Administator');
+(1000000001, 'Sam', 'Willer', '2043048999', 'Florida 32010', 'SamWill@gmail.com', 'Firstmustang35*', 'Administator'),
+(1000000002, 'John', 'Kruger', '5876782145', 'Lowa 51002', 'Kruger1996@hotmail.com', 'Jadewheel89-', 'Client'),
+(1000000003, 'Rose', 'Agnello', '3245878494', 'Idaho 83254', 'Rosello@gmail.com', 'Loudkey99_', 'Client'),
+(1000000004, 'Anne', 'Miller', '3255500014', 'Texas 73331', 'ANNIE1234@gmail.com', 'Freeglue78=', 'Client'),
+(1000000005, 'Joe', 'Jakob', '7852456444', 'Mexico 87001', 'mexicanJOE@hotmail.com', 'Muddytiger37+', 'Client'),
+(1000000006, 'Zebra', 'Redfiend', '4285122489', 'Maine 04032', 'Zebv1asd@gmail.com', 'Freesilver36/', 'Client'),
+(1000000007, 'John', 'Mayer', '8234554259', 'Ohio 44101', 'Jonny8921@hotmail.com', 'Flatmonkey38#', 'Administator'),
+(1000000008, 'Angelena', 'Jolie', '9872347357', 'Nevada 89513', 'AMangel@gmail.com', 'Lumpylace59+', 'Client'),
+(1000000009, 'Jame', 'Bone', '8745786483', 'Maryland 20201', 'jamebond@hotmail.com', 'Emptypaste49*', 'Client'),
+(1000000010, 'Selen', 'Bush', '9689214681', 'Hawaii 96801', 'selena@hotmail.com', 'Spicyroll60-', 'Client'),
+(1000000011, 'Helena', 'Stone', '3452105426', 'Virginia 24517', 'Helenny@gmail.com', 'L_azyapple61', 'Administator');
 
 INSERT INTO `Login_Info` (`LOGIN_ID`, `USER_ID`, `LOGIN_Log`) VALUES
-(1010547, 'u1000000001', '2022-02-02'),
-(1010625, 'u1000000002', '2022-02-04'),
-(1010628, 'u1000000003', '2022-02-04'),
-(1010748, 'u1000000004', '2022-02-05'),
-(1010895, 'u1000000005', '2022-02-06'),
-(1010896, 'u1000000006', '2022-02-06'),
-(1010900, 'u1000000007', '2022-02-07'),
-(1010950, 'u1000000008', '2022-02-09'),
-(1010987, 'u1000000009', '2022-02-10'),
-(1011021, 'u1000000010', '2022-02-12'),
-(1011105, 'u1000000011', '2022-02-15');
+(1010547, 1000000001, '2022-02-02'),
+(1010625, 1000000002, '2022-02-04'),
+(1010628, 1000000003, '2022-02-04'),
+(1010748, 1000000004, '2022-02-05'),
+(1010895, 1000000005, '2022-02-06'),
+(1010896, 1000000006, '2022-02-06'),
+(1010900, 1000000007, '2022-02-07'),
+(1010950, 1000000008, '2022-02-09'),
+(1010987, 1000000009, '2022-02-10'),
+(1011021, 1000000010, '2022-02-12'),
+(1011105, 1000000011, '2022-02-15');
     
 INSERT INTO `PRODUCT` (`PROD_ID`, `PROD_Name`, `PROD_Price`, `PROD_Description`, `PROD_Image`, `PROD_Type`, `PROD_Period_generation`, `PROD_Console_type`) VALUES
 (00000001, 'Sonic Ultimate Genesis Collection', 301, 'A Sega Games from 2009 play on Xbox 360', ('https://github.com/Game-Sole/Game-Sole-Web-Game-Sole/Web/Images/Product/Sonic.jpg'), 'Video game', 'Seventh', NULL),

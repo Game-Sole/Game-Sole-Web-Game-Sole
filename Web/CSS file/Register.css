@@ -85,3 +85,9 @@ form {
     background-color: #c6c0b6;
     margin: 20px;
 }
+
+/* Set link navbar that link to Login page. */
+
+.Login-navbar {
+    margin-left: 20px;
+}
