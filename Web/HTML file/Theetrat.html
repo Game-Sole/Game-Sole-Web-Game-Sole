@@ -4,9 +4,54 @@
 <!--- Page title --->
 
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="../CSS file/Theetrat.CSS">
     <title>Game Sole|About Us|</title>
 </head>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var value = getCookie("GameSoletoken");
+        $.ajax({
+            url: '/cookie',
+            type: 'POST',
+            data: { cookie: value },
+            datatype: 'json',
+            success: function (data) {
+                var obj = JSON.parse(data);
+                if (obj.role == "Administator") {
+                    $('.Register-navbar').hide();
+                    $('.Login-navbar').hide();
+                    $('.Logout-navbar').show();
+                    document.getElementById("User-email").innerHTML = "<p>" + "Admin: " + obj.email + "</p>";
+                } else {
+                    $('.Register-navbar').hide();
+                    $('.Login-navbar').hide();
+                    $('.Logout-navbar').show();
+                    document.getElementById("User-email").innerHTML = "<p>" + obj.email + "</p>";
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('.Logout-navbar').hide();
+                $('.Register-navbar').show();
+                $('.Login-navbar').show();
+            }
+        });
+
+        $('.Logout-navbar').click(function () {
+            document.cookie = "GameSoletoken" + '=; Max-Age=-99999999;';
+            location.reload();
+        });
+    });
+    function getCookie(name) {
+        let cookie = {};
+        document.cookie.split(';').forEach(function (el) {
+            let [k, v] = el.split('=');
+            cookie[k.trim()] = v;
+        })
+        return cookie[name];
+    }
+</script>
 
 <body>
     <header>
@@ -30,6 +75,18 @@
                 <a href="Login.html"><img src="../images/2U Button Cream Idle.png" / alt="back"></a>
                 <!--- another version of images to use 'Hover' in CSS -->
                 <a href="Login.html"><img src="../images/2U Button Cream Press.png" / class="img-top" alt="front"></a>
+            </nav>
+            
+            <!--- Logout logo to Logout--->
+            <nav class="Logout-navbar">
+                <a input type="image" name="Logout"><img src="../images/2U Button Red Logout Idle.png" / alt="back"></a>
+                <!--- another version of images to use 'Hover' in CSS -->
+                <a input type="image" name="Logout"><img src="../images/2U Button Red Logout Press.png" / class="img-top"alt="front"></a>
+            </nav>
+
+            <!--- Email of the logged in user--->
+            <nav class="User-email" id="User-email">
+            </nav>
             </nav>
         </div>
     </header>

@@ -31,7 +31,7 @@ router.get("/Register.html", Register);
 router.get("/ShopPage.html", ShopPage);
 
 // http://localhost:4301/Result.html
-router.get("/Result.html", Result);
+router.get("/Result.html/:id", Result);
 
 // This is for task 3 only admin can see this.
 // router.get('/secret-route', (req, res, next) => {
@@ -40,7 +40,7 @@ router.get("/Result.html", Result);
 
 // Website path------------------------------------------------------------------------------------------------------------
 
-//AdminstratorService------------------------------------------------------------------------------------------------------------
+//AdministratorService------------------------------------------------------------------------------------------------------------
 const { Get1Product, GetAllProduct, PostProduct, PutProduct, DeleteProduct, Get1User, GetAllUser, PostUser, PutUser, DeleteUser } = require("./Controller/AdministratorService");
 //See test case in filename 'AdministratorService.js' on folder 'Controller'
 
@@ -57,7 +57,15 @@ router.get("/users", GetAllUser);
 router.post("/user", PostUser);
 router.put("/user/:id", PutUser);
 router.delete("/user/:id", DeleteUser);
-//AdminstratorService------------------------------------------------------------------------------------------------------------
+//AdministratorService------------------------------------------------------------------------------------------------------------
+
+//UsersService------------------------------------------------------------------------------------------------------------
+const { SearchProduct, ResultProduct } = require("./Controller/UsersService");
+//See test case in filename 'UsersService.js' on folder 'Controller'
+
+router.post("/product-search", SearchProduct);
+router.post("/product-result", ResultProduct);
+//UsersService------------------------------------------------------------------------------------------------------------
 
 //Login & Register------------------------------------------------------------------------------------------------------------
 const { RegisUser, LoginUser, GetUserForToken } = require("./middlewares/auth");

@@ -80,13 +80,14 @@
 
             <!--- Logout logo to Logout--->
             <nav class="Logout-navbar">
-                <a input type="image" name="Logout" src="../images/2U Button Red Logout Idle.png" / alt="back"></a>
+                <a input type="image" name="Logout"><img src="../images/2U Button Red Logout Idle.png" / alt="back"></a>
                 <!--- another version of images to use 'Hover' in CSS -->
-                <a input type="image" name="Logout" src="../images/2U Button Red Logout Press.png" / class="img-top"
-                    alt="front"></a>
+                <a input type="image" name="Logout"><img src="../images/2U Button Red Logout Press.png" /
+                        class="img-top" alt="front"></a>
             </nav>
 
-            <nav id="User-email">
+            <!--- Email of the logged in user--->
+            <nav class="User-email" id="User-email">
             </nav>
         </div>
     </header>
@@ -96,73 +97,141 @@
 
         <!--- Homepage button link to Home page --->
         <nav class="Homepage">
-            <a href="Homepage.html"><img src="../images/Navigation Bar Home.png" /></a>
+            <a href="/Homepage.html"><img src="../images/Navigation Bar Home.png" /></a>
         </nav>
 
         <!--- Shopping button link to Shop page --->
         <nav class="Shopping">
-            <a href="ShopPage.html"><img src="../images/Navigation Bar Shop Press.png" /></a>
+            <a href="/ShopPage.html"><img src="../images/Navigation Bar Shop Press.png" /></a>
         </nav>
 
         <!--- About Us button link to About US page --->
         <nav class="About US">
-            <a href="AboutUs.html"><img src="../images/Navigation Bar About Us Idle.png" /></a>
+            <a href="/AboutUs.html"><img src="../images/Navigation Bar About Us Idle.png" /></a>
         </nav>
     </nav>
 
     <!--- Contain a searching option --->
     <div class="sidenav">
-        <input class="search_bar" type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.."
-            title="Type in a category" pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+">
-
-        <button class="dropdown-btn">Video game/Game player/Controller
+        <!--- Search Bar --->
+        <input class="search_bar" style="width: 182px;" type="text" id="PROD_Name" name="PROD_Name"
+            placeholder="Search.." pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+">
+        <!--- Dropdown Criteria --->
+        <button type="button" class="dropdown-btn">Video game/Game player/Controller
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <label class="container">Video game<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Game player<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Controller<input type="checkbox"><span class="checkmark"></span></label>
-        </div>
-
-        <button class="dropdown-btn">Period generation
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-container">
-            <label class="container">First generation<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Second generation<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Third generation<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Fourth generation<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Fifth generation<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Sixth generation<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Seventh generation<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Eighth generation<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Ninth generation<input type="checkbox"><span class="checkmark"></span></label>
-        </div>
-
-        <button class="dropdown-btn">Console game player type
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-container">
-            <label class="container">handheld console player<input type="checkbox"><span
+            <label class="container">Video game<input type="radio" name="PROD_Type" value="Video game"><span
                     class="checkmark"></span></label>
-            <label class="container">home console player<input type="checkbox"><span class="checkmark"></span></label>
+            <label class="container">Game player<input type="radio" name="PROD_Type" value="Game player"><span
+                    class="checkmark"></span></label>
+            <label class="container">Controller<input type="radio" name="PROD_Type" value="Controller"><span
+                    class="checkmark"></span></label>
         </div>
+        <button type="button" class="dropdown-btn">Period generation
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <label class="container">First generation<input type="radio" name="PROD_Period_generation"
+                    value="First"><span class="checkmark"></span></label>
+            <label class="container">Second generation<input type="radio" name="PROD_Period_generation"
+                    value="Second"><span class="checkmark"></span></label>
+            <label class="container">Third generation<input type="radio" name="PROD_Period_generation"
+                    value="Third"><span class="checkmark"></span></label>
+            <label class="container">Fourth generation<input type="radio" name="PROD_Period_generation"
+                    value="Fourth"><span class="checkmark"></span></label>
+            <label class="container">Fifth generation<input type="radio" name="PROD_Period_generation"
+                    value="Fifth"><span class="checkmark"></span></label>
+            <label class="container">Sixth generation<input type="radio" name="PROD_Period_generation"
+                    value="Sixth"><span class="checkmark"></span></label>
+            <label class="container">Seventh generation<input type="radio" name="PROD_Period_generation"
+                    value="Seventh"><span class="checkmark"></span></label>
+            <label class="container">Eighth generation<input type="radio" name="PROD_Period_generation"
+                    value="Eighth"><span class="checkmark"></span></label>
+            <label class="container">Ninth generation<input type="radio" name="PROD_Period_generation"
+                    value="Ninth"><span class="checkmark"></span></label>
+        </div>
+        <button type="button" class="dropdown-btn">Console game player type
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <label class="container">handheld console player<input type="radio" name="PROD_Console_type"
+                    value="handheld console player"><span class="checkmark"></span></label>
+            <label class="container">home console player<input type="radio" name="PROD_Console_type"
+                    value="home console player"><span class="checkmark"></span></label>
+        </div>
+        <!--- Price Bar --->
+        <input class="search_bar" style="width: 182px;  margin-top: 15px;" type="text" id="PROD_Price" name="PROD_Price"
+            placeholder="Price.." pattern="[0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+">
+        <!--- Submit Button --->
+        <button class="search_bar" style="width: 190px;" value="submit" onclick="doSearch()">Search</button>
     </div>
     <!--- Contain a searching option --->
 
     <!--- Item Description --->
     <div class="main">
         <h2>Result</h2>
-        <article>
-            <figure>
-                <a href="Result.html"><img src="../images/Product/Odyssey.jpg" /></a>
-                <figcaption>Magnavox Odyssey 2</figcaption><br>
-                <figcaption>3199 Baht</figcaption><br>
-            </figure>
-            <label for="Description">One of the oldest home console game player from second generation</label>
-        </article>
+        <div class="Product" id="result-box"></div>
+
+        <!--- Javascript function for Search the Product --->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                getData();
+            });
+            function doSearch() {
+                let PROD_Name = document.getElementById("PROD_Name").value;
+                let PROD_Price = document.getElementById("PROD_Price").value;
+                let PROD_Type = document.querySelector('input[name="PROD_Type"]:checked');
+                let PROD_Period_generation = document.querySelector('input[name="PROD_Period_generation"]:checked');
+                let PROD_Console_type = document.querySelector('input[name="PROD_Console_type"]:checked');
+                if (PROD_Type != null) {
+                    PROD_Type = PROD_Type.value;
+                }
+                if (PROD_Period_generation != null) {
+                    PROD_Period_generation = PROD_Period_generation.value;
+                }
+                if (PROD_Console_type != null) {
+                    PROD_Console_type = PROD_Console_type.value;
+                }
+                if (PROD_Name == "") {
+                    PROD_Name = null;
+                }
+                if (PROD_Price == "") {
+                    PROD_Price = null;
+                }
+                window.location = "/ShopPage.html?name=" + PROD_Name + "&"
+                    + "price=" + PROD_Price + "&"
+                    + "type=" + PROD_Type + "&"
+                    + "gen=" + PROD_Period_generation + "&"
+                    + "content-type=" + PROD_Console_type;
+            }
+
+            function getData() {
+                let path = window.location.href;
+                let productId = path.split("/").slice(-1)[0]
+                console.log(productId);
+                fetch("http://localhost:4301/product-result", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: productId
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => setResult(data));
+            }
+
+            function setResult(data) {
+                console.log(data)
+                for (let n of data.data) {
+                    output = "<a><article><figure><img src=" + n.PROD_Image + "><figcaption>" + n.PROD_Name + "</figcaption><br><figcaption>" + n.PROD_Price + " Baht</figcaption><br></figure><label for='Description'>" + n.PROD_Description + "</label></article></a>";
+                }
+                document.getElementById("result-box").innerHTML = output;
+            }
+        </script>
     </div>
-    <!--- Item Description --->
 
     <!--- Javascript function for drop down button --->
     <script>

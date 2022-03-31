@@ -18,17 +18,23 @@
             data: { cookie: value },
             datatype: 'json',
             success: function (data) {
-                $('.Register-navbar').hide();
-                $('.Login-navbar').hide();
-                $('.Logout-navbar').show();
                 var obj = JSON.parse(data);
-                document.getElementById("User-email").innerHTML = "<p>" + obj.email + "</p>";
+                if (obj.role == "Administator") {
+                    $('.Register-navbar').hide();
+                    $('.Login-navbar').hide();
+                    $('.Logout-navbar').show();
+                    document.getElementById("User-email").innerHTML = "<p>" + "Admin: " + obj.email + "</p>";
+                } else {
+                    $('.Register-navbar').hide();
+                    $('.Login-navbar').hide();
+                    $('.Logout-navbar').show();
+                    document.getElementById("User-email").innerHTML = "<p>" + obj.email + "</p>";
+                }
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $('.Logout-navbar').hide();
                 $('.Register-navbar').show();
                 $('.Login-navbar').show();
-                document.location.href = '/Login.html';
             }
         });
 
@@ -74,13 +80,14 @@
 
             <!--- Logout logo to Logout--->
             <nav class="Logout-navbar">
-                <a input type="image" name="Logout" src="../images/2U Button Red Logout Idle.png" / alt="back"></a>
+                <a input type="image" name="Logout"><img src="../images/2U Button Red Logout Idle.png" / alt="back"></a>
                 <!--- another version of images to use 'Hover' in CSS -->
-                <a input type="image" name="Logout" src="../images/2U Button Red Logout Press.png" / class="img-top"
-                    alt="front"></a>
+                <a input type="image" name="Logout"><img src="../images/2U Button Red Logout Press.png" /
+                        class="img-top" alt="front"></a>
             </nav>
 
-            <nav id="User-email">
+            <!--- Email of the logged in user--->
+            <nav class="User-email" id="User-email">
             </nav>
         </div>
     </header>
@@ -106,89 +113,150 @@
 
     <!--- Contain a searching option --->
     <div class="sidenav">
-        <input class="search_bar" type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.."
-            title="Type in a category" pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+">
-
-        <button class="dropdown-btn">Video game/Game player/Controller
+        <!--- Search Bar --->
+        <input class="search_bar" style="width: 182px;" type="text" id="PROD_Name" name="PROD_Name"
+            placeholder="Search.." pattern="[a-zA-Z0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+">
+        <!--- Dropdown Criteria --->
+        <button type="button" class="dropdown-btn">Video game/Game player/Controller
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <label class="container">Video game<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Game player<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Controller<input type="checkbox"><span class="checkmark"></span></label>
-        </div>
-
-        <button class="dropdown-btn">Period generation
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-container">
-            <label class="container">First generation<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Second generation<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Third generation<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Fourth generation<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Fifth generation<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Sixth generation<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Seventh generation<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Eighth generation<input type="checkbox"><span class="checkmark"></span></label>
-            <label class="container">Ninth generation<input type="checkbox"><span class="checkmark"></span></label>
-        </div>
-
-        <button class="dropdown-btn">Console game player type
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-container">
-            <label class="container">handheld console player<input type="checkbox"><span
+            <label class="container">Video game<input type="radio" name="PROD_Type" value="Video game"><span
                     class="checkmark"></span></label>
-            <label class="container">home console player<input type="checkbox"><span class="checkmark"></span></label>
+            <label class="container">Game player<input type="radio" name="PROD_Type" value="Game player"><span
+                    class="checkmark"></span></label>
+            <label class="container">Controller<input type="radio" name="PROD_Type" value="Controller"><span
+                    class="checkmark"></span></label>
         </div>
+        <button type="button" class="dropdown-btn">Period generation
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <label class="container">First generation<input type="radio" name="PROD_Period_generation"
+                    value="First"><span class="checkmark"></span></label>
+            <label class="container">Second generation<input type="radio" name="PROD_Period_generation"
+                    value="Second"><span class="checkmark"></span></label>
+            <label class="container">Third generation<input type="radio" name="PROD_Period_generation"
+                    value="Third"><span class="checkmark"></span></label>
+            <label class="container">Fourth generation<input type="radio" name="PROD_Period_generation"
+                    value="Fourth"><span class="checkmark"></span></label>
+            <label class="container">Fifth generation<input type="radio" name="PROD_Period_generation"
+                    value="Fifth"><span class="checkmark"></span></label>
+            <label class="container">Sixth generation<input type="radio" name="PROD_Period_generation"
+                    value="Sixth"><span class="checkmark"></span></label>
+            <label class="container">Seventh generation<input type="radio" name="PROD_Period_generation"
+                    value="Seventh"><span class="checkmark"></span></label>
+            <label class="container">Eighth generation<input type="radio" name="PROD_Period_generation"
+                    value="Eighth"><span class="checkmark"></span></label>
+            <label class="container">Ninth generation<input type="radio" name="PROD_Period_generation"
+                    value="Ninth"><span class="checkmark"></span></label>
+        </div>
+        <button type="button" class="dropdown-btn">Console game player type
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <label class="container">handheld console player<input type="radio" name="PROD_Console_type"
+                    value="handheld console player"><span class="checkmark"></span></label>
+            <label class="container">home console player<input type="radio" name="PROD_Console_type"
+                    value="home console player"><span class="checkmark"></span></label>
+        </div>
+        <!--- Price Bar --->
+        <input class="search_bar" style="width: 182px; margin-top: 15px;" type="text" id="PROD_Price" name="PROD_Price"
+            placeholder="Price.." pattern="[0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+">
+        <!--- Submit Button --->
+        <button class="search_bar" style="width: 190px;" value="submit" onclick="doSearch()">Search</button>
     </div>
     <!--- Contain a searching option --->
 
     <!--- Item in shop--->
     <div class="main">
         <h2>ShopPage</h2>
-        <article>
-            <figure>
-                <a href="Result.html"><img src="../images/Product/Odyssey.jpg" /></a>
-                <figcaption>Magnavox Odyssey 2</figcaption><br>
-                <figcaption>3199 Baht</figcaption><br>
-            </figure>
-        </article>
-        <article>
-            <figure>
-                <a href="Result.html"><img src="../images/Product/Odyssey.jpg" /></a>
-                <figcaption>Magnavox Odyssey 2</figcaption><br>
-                <figcaption>3199 Baht</figcaption><br>
-            </figure>
-        </article>
-        <article>
-            <figure>
-                <a href="Result.html"><img src="../images/Product/Odyssey.jpg" /></a>
-                <figcaption>Magnavox Odyssey 2</figcaption><br>
-                <figcaption>3199 Baht</figcaption><br>
-            </figure>
-        </article>
-        <article>
-            <figure>
-                <a href="Result.html"><img src="../images/Product/Odyssey.jpg" /></a>
-                <figcaption>Magnavox Odyssey 2</figcaption><br>
-                <figcaption>3199 Baht</figcaption><br>
-            </figure>
-        </article>
-        <article>
-            <figure>
-                <a href="Result.html"><img src="../images/Product/Odyssey.jpg" /></a>
-                <figcaption>Magnavox Odyssey 2</figcaption><br>
-                <figcaption>3199 Baht</figcaption><br>
-            </figure>
-        </article>
-        <article>
-            <figure>
-                <a href="Result.html"><img src="../images/Product/Odyssey.jpg" /></a>
-                <figcaption>Magnavox Odyssey 2</figcaption><br>
-                <figcaption>3199 Baht</figcaption><br>
-            </figure>
-        </article>
+        <!--- Item in shop--->
+        <div class="Product" id="result-box"></div>
+
+        <!--- Javascript function for Search the Product --->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                doSearch();
+            });
+            function doSearch() {
+                const queryString = window.location.search;
+                if (queryString) {
+
+                    const urlParams = new URLSearchParams(queryString);
+                    let PROD_Name = urlParams.get('name');
+                    let PROD_Price = urlParams.get('price');
+                    let PROD_Type = urlParams.get('type');
+                    let PROD_Period_generation = urlParams.get('gen');
+                    let PROD_Console_type = urlParams.get('content-type');
+                    fetch("http://localhost:4301/product-search", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            PROD_Name: PROD_Name,
+                            PROD_Type: PROD_Type,
+                            PROD_Period_generation: PROD_Period_generation,
+                            PROD_Console_type: PROD_Console_type,
+                            PROD_Price: PROD_Price
+                        })
+                    })
+                        .then(response => response.json())
+                        .then(data => setResult(data));
+                    window.history.pushState({}, document.title, "/" + "ShopPage.html");
+                } else {
+                    let PROD_Name = document.getElementById("PROD_Name").value;
+                    let PROD_Price = document.getElementById("PROD_Price").value;
+                    let PROD_Type = document.querySelector('input[name="PROD_Type"]:checked');
+                    let PROD_Period_generation = document.querySelector('input[name="PROD_Period_generation"]:checked');
+                    let PROD_Console_type = document.querySelector('input[name="PROD_Console_type"]:checked');
+                    if (PROD_Type != null) {
+                        PROD_Type = PROD_Type.value;
+                    }
+                    if (PROD_Period_generation != null) {
+                        PROD_Period_generation = PROD_Period_generation.value;
+                    }
+                    if (PROD_Console_type != null) {
+                        PROD_Console_type = PROD_Console_type.value;
+                    }
+                    fetch("http://localhost:4301/product-search", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            PROD_Name: PROD_Name,
+                            PROD_Type: PROD_Type,
+                            PROD_Period_generation: PROD_Period_generation,
+                            PROD_Console_type: PROD_Console_type,
+                            PROD_Price: PROD_Price
+                        })
+                    })
+                        .then(response => response.json())
+                        .then(data => setResult(data));
+                }
+
+            }
+
+            function setResult(data) {
+                let output = "";
+                let box = document.getElementById("result-box");
+                box.innerHTML = "";
+                var i = 0;
+                for (let n of data.data) {
+                    i = i + 1;
+                    output = output + "<a href=/Result.html/" + n.PROD_ID + "><article><figure><img src=" + n.PROD_Image + "><figcaption>" + n.PROD_Name + "</figcaption><br><figcaption>" + n.PROD_Price + " Baht</figcaption><br></figure></article></a>"
+                }
+                if (i == 0) output = "<figcaption style='margin-left: 40px;'>No matched product.</figcaption>"
+                box.innerHTML = output;
+            }
+
+            function Reset() {
+                var PROD_Type_radio = document.getElementsByTagName('input');
+                PROD_Type_radio.checked = false;
+            }
+        </script>
     </div>
     <!--- Item in shop--->
 
