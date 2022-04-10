@@ -22,17 +22,23 @@
                 if (obj.role == "Administator") {
                     $('.Register-navbar').hide();
                     $('.Login-navbar').hide();
+                    $('.User-edit').show();
+                    $('.Product-edit').show();
                     $('.Logout-navbar').show();
                     document.getElementById("User-email").innerHTML = "<p>" + "Admin: " + obj.email + "</p>";
                 } else {
                     $('.Register-navbar').hide();
                     $('.Login-navbar').hide();
+                    $('.User-edit').hide();
+                    $('.Product-edit').hide();
                     $('.Logout-navbar').show();
                     document.getElementById("User-email").innerHTML = "<p>" + obj.email + "</p>";
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $('.Logout-navbar').hide();
+                $('.User-edit').hide();
+                $('.Product-edit').hide();
                 $('.Register-navbar').show();
                 $('.Login-navbar').show();
             }
@@ -106,6 +112,16 @@
         <!--- About Us button link to About US page --->
         <nav class="About US">
             <a href="AboutUs.html"><img src="../images/Navigation Bar About Us Press.png" /></a>
+        </nav>
+
+        <!--- User edit button link to admin edit User page --->
+        <nav class="User-edit">
+            <a href="User-edit.html"><img src="../images/Navigation Bar User  Idle.png" /></a>
+        </nav>
+
+        <!--- Product edit button link to admin edit product page --->
+        <nav class="Product-edit">
+            <a href="Product-edit.html"><img src="../images/Navigation Bar Product Idle.png" /></a>
         </nav>
     </nav>
 
