@@ -46,6 +46,26 @@ const Result = (cors(), (req, res) => {
     res.sendFile(path.join(__dirname, '/../../HTML file/Result.html'))
 });
 
+// http://localhost:4301/User-edit
+const User_edit = (cors(), (req, res) => {
+    res.sendFile(path.join(__dirname, '/../../HTML file/User-edit.html'))
+});
+
+// http://localhost:4301/Result_User-edit
+const Result_User_edit = (cors(), (req, res) => {
+    res.sendFile(path.join(__dirname, '/../../HTML file/Result_User-edit.html'))
+});
+
+// http://localhost:4301/User-edit
+const Product_edit = (cors(), (req, res) => {
+    res.sendFile(path.join(__dirname, '/../../HTML file/Product-edit.html'))
+});
+
+// http://localhost:4301/Result_User-edit
+const Result_Product_edit = (cors(), (req, res) => {
+    res.sendFile(path.join(__dirname, '/../../HTML file/Result_Product-edit.html'))
+});
+
 module.exports = {
     AboutUs,
     Chayut,
@@ -55,5 +75,9 @@ module.exports = {
     Login,
     Register,
     ShopPage,
-    Result
+    Result,
+    User_edit,
+    Result_User_edit,
+    Product_edit,
+    Result_Product_edit,
 };

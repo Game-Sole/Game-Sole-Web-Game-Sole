@@ -5,7 +5,7 @@
 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="../CSS file/Product-edit.css">
+    <link rel="stylesheet" href="../CSS file/Result_Product-edit.css">
     <title>Game Sole|Console online shop|</title>
 </head>
 
@@ -103,17 +103,17 @@
 
         <!--- Homepage button link to Home page --->
         <nav class="Homepage">
-            <a href="Homepage.html"><img src="../images/Navigation Bar Home.png" /></a>
+            <a href="/Homepage.html"><img src="../images/Navigation Bar Home.png" /></a>
         </nav>
 
         <!--- Shopping button link to Shop page --->
         <nav class="Shopping">
-            <a href="ShopPage.html"><img src="../images/Navigation Bar Shop Idle.png" /></a>
+            <a href="/ShopPage.html"><img src="../images/Navigation Bar Shop Idle.png" /></a>
         </nav>
 
         <!--- About Us button link to About US page --->
         <nav class="About US">
-            <a href="AboutUs.html"><img src="../images/Navigation Bar About Us Idle.png" /></a>
+            <a href="/AboutUs.html"><img src="../images/Navigation Bar About Us Idle.png" /></a>
         </nav>
 
         <!--- User edit button link to admin edit User page --->
@@ -177,104 +177,77 @@
                     value="home console player"><span class="checkmark"></span></label>
         </div>
         <!--- Price Bar --->
-        <input class="search_bar" style="width: 182px; margin-top: 15px;" type="text" id="PROD_Price" name="PROD_Price"
+        <input class="search_bar" style="width: 182px;  margin-top: 15px;" type="text" id="PROD_Price" name="PROD_Price"
             placeholder="Price.." pattern="[0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+">
         <!--- Submit Button --->
         <button class="search_bar" style="width: 190px;" value="submit" onclick="doSearch()">Search</button>
     </div>
     <!--- Contain a searching option --->
 
-    <!--- Item in shop--->
+    <!--- Item Description --->
     <div class="main">
-        <h2>Edit Product Page</h2>
-        <!--- Item in shop--->
+        <h2>Result for Product edit</h2>
         <div class="Product" id="result-box"></div>
 
         <!--- Javascript function for Search the Product --->
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                doSearch();
+                getData();
             });
             function doSearch() {
-                const queryString = window.location.search;
-                if (queryString) {
-
-                    const urlParams = new URLSearchParams(queryString);
-                    let PROD_Name = urlParams.get('name');
-                    let PROD_Price = urlParams.get('price');
-                    let PROD_Type = urlParams.get('type');
-                    let PROD_Period_generation = urlParams.get('gen');
-                    let PROD_Console_type = urlParams.get('content-type');
-                    fetch("http://localhost:4301/product-edit-search", {
-                        method: "POST",
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            PROD_Name: PROD_Name,
-                            PROD_Type: PROD_Type,
-                            PROD_Period_generation: PROD_Period_generation,
-                            PROD_Console_type: PROD_Console_type,
-                            PROD_Price: PROD_Price
-                        })
-                    })
-                        .then(response => response.json())
-                        .then(data => setResult(data));
-                    window.history.pushState({}, document.title, "/" + "Product-edit.html");
-                } else {
-                    let PROD_Name = document.getElementById("PROD_Name").value;
-                    let PROD_Price = document.getElementById("PROD_Price").value;
-                    let PROD_Type = document.querySelector('input[name="PROD_Type"]:checked');
-                    let PROD_Period_generation = document.querySelector('input[name="PROD_Period_generation"]:checked');
-                    let PROD_Console_type = document.querySelector('input[name="PROD_Console_type"]:checked');
-                    if (PROD_Type != null) {
-                        PROD_Type = PROD_Type.value;
-                    }
-                    if (PROD_Period_generation != null) {
-                        PROD_Period_generation = PROD_Period_generation.value;
-                    }
-                    if (PROD_Console_type != null) {
-                        PROD_Console_type = PROD_Console_type.value;
-                    }
-                    fetch("http://localhost:4301/product-edit-search", {
-                        method: "POST",
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            PROD_Name: PROD_Name,
-                            PROD_Type: PROD_Type,
-                            PROD_Period_generation: PROD_Period_generation,
-                            PROD_Console_type: PROD_Console_type,
-                            PROD_Price: PROD_Price
-                        })
-                    })
-                        .then(response => response.json())
-                        .then(data => setResult(data));
+                let PROD_Name = document.getElementById("PROD_Name").value;
+                let PROD_Price = document.getElementById("PROD_Price").value;
+                let PROD_Type = document.querySelector('input[name="PROD_Type"]:checked');
+                let PROD_Period_generation = document.querySelector('input[name="PROD_Period_generation"]:checked');
+                let PROD_Console_type = document.querySelector('input[name="PROD_Console_type"]:checked');
+                if (PROD_Type != null) {
+                    PROD_Type = PROD_Type.value;
                 }
+                if (PROD_Period_generation != null) {
+                    PROD_Period_generation = PROD_Period_generation.value;
+                }
+                if (PROD_Console_type != null) {
+                    PROD_Console_type = PROD_Console_type.value;
+                }
+                if (PROD_Name == "") {
+                    PROD_Name = null;
+                }
+                if (PROD_Price == "") {
+                    PROD_Price = null;
+                }
+                window.location = "/Product-edit.html?name=" + PROD_Name + "&"
+                    + "price=" + PROD_Price + "&"
+                    + "type=" + PROD_Type + "&"
+                    + "gen=" + PROD_Period_generation + "&"
+                    + "content-type=" + PROD_Console_type;
+            }
 
+            function getData() {
+                let path = window.location.href;
+                let productId = path.split("/").slice(-1)[0]
+                console.log(productId);
+                fetch("http://localhost:4301/product-edit-result", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: productId
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => setResult(data));
             }
 
             function setResult(data) {
-                let output = "";
-                let box = document.getElementById("result-box");
-                box.innerHTML = "";
-                var i = 0;
+                console.log(data)
                 for (let n of data.data) {
-                    i = i + 1;
-                    output = output + "<a href=/Result_Product-edit.html/" + n.PROD_ID + "><article><figure><img src=" + n.PROD_Image + "><figcaption>" + n.PROD_Name + "</figcaption><br><figcaption>" + n.PROD_Price + " Baht</figcaption><br></figure></article></a>"
+                    output = "<a><article><figure><img src=" + n.PROD_Image + "><figcaption>" + n.PROD_Name + "</figcaption><br><figcaption>" + n.PROD_Price + " Baht</figcaption><br></figure><label for='Description'>" + n.PROD_Description + "</label></article></a>";
                 }
-                if (i == 0) output = "<figcaption style='margin-left: 40px;'>No matched product.</figcaption>"
-                box.innerHTML = output;
-            }
-
-            function Reset() {
-                var PROD_Type_radio = document.getElementsByTagName('input');
-                PROD_Type_radio.checked = false;
+                document.getElementById("result-box").innerHTML = output;
             }
         </script>
     </div>
-    <!--- Item in shop--->
 
     <!--- Javascript function for drop down button --->
     <script>

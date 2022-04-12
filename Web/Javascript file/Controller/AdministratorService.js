@@ -2,8 +2,7 @@ let express = require("express"),
   mysql = require("mysql2"),
   cors = require("cors"),
   fs = require("fs");
-app = express(),
-  port = process.env.port || 4301
+(app = express()), (port = process.env.port || 4301);
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -31,7 +30,11 @@ const Get1Product = (req, res) => {
   let sqlQuery = "SELECT * FROM PRODUCT WHERE PROD_ID=" + req.params.id;
   let query = dbConn.query(sqlQuery, (err, results) => {
     if (err) throw err;
-    return res.send({ error: false, data: results[0], message: 'Product retrieved' });
+    return res.send({
+      error: false,
+      data: results[0],
+      message: "Product retrieved",
+    });
   });
 };
 
@@ -52,7 +55,7 @@ const GetAllProduct = (req, res) => {
 // method: post
 // URL: http://localhost:4301/product
 // body: raw (JSON)
-// 
+//
 // {
 //   "PROD_ID": 101,
 //   "PROD_Name": "It take two",
@@ -83,12 +86,16 @@ const PostProduct = (req, res) => {
     PROD_Image: req.body.PROD_Image,
     PROD_Type: req.body.PROD_Type,
     PROD_Period_generation: req.body.PROD_Period_generation,
-    PROD_Console_type: req.body.PROD_Console_type
+    PROD_Console_type: req.body.PROD_Console_type,
   };
   let sqlQuery = "INSERT INTO PRODUCT SET ?";
   let query = dbConn.query(sqlQuery, data, (err, results) => {
     if (err) throw err;
-    return res.send({ error: false, data: results.affectedRows, message: 'New product has been created successfully.' });
+    return res.send({
+      error: false,
+      data: results.affectedRows,
+      message: "New product has been created successfully.",
+    });
   });
 };
 
@@ -119,10 +126,30 @@ const PostProduct = (req, res) => {
 //   "PROD_Console_type": "home console player"
 // }
 const PutProduct = (req, res) => {
-  let sqlQuery = "UPDATE PRODUCT SET PROD_Name='" + req.body.PROD_Name + "', PROD_Price='" + req.body.PROD_Price + "', PROD_Description='" + req.body.PROD_Description + "', PROD_Image='" + req.body.PROD_Image + "', PROD_Type='" + req.body.PROD_Type + "', PROD_Period_generation='" + req.body.PROD_Period_generation + "', PROD_Console_type='" + req.body.PROD_Console_type + "' WHERE PROD_ID=" + req.params.id;
+  let sqlQuery =
+    "UPDATE PRODUCT SET PROD_Name='" +
+    req.body.PROD_Name +
+    "', PROD_Price='" +
+    req.body.PROD_Price +
+    "', PROD_Description='" +
+    req.body.PROD_Description +
+    "', PROD_Image='" +
+    req.body.PROD_Image +
+    "', PROD_Type='" +
+    req.body.PROD_Type +
+    "', PROD_Period_generation='" +
+    req.body.PROD_Period_generation +
+    "', PROD_Console_type='" +
+    req.body.PROD_Console_type +
+    "' WHERE PROD_ID=" +
+    req.params.id;
   let query = dbConn.query(sqlQuery, (err, results) => {
     if (err) throw err;
-    return res.send({ error: false, data: results.affectedRows, message: 'Product has been updated successfully.' })
+    return res.send({
+      error: false,
+      data: results.affectedRows,
+      message: "Product has been updated successfully.",
+    });
   });
 };
 
@@ -135,7 +162,11 @@ const DeleteProduct = (req, res) => {
   let sqlQuery = "DELETE FROM PRODUCT WHERE PROD_ID=" + req.params.id + "";
   let query = dbConn.query(sqlQuery, (err, results) => {
     if (err) throw err;
-    return res.send({ error: false, data: results.affectedRows, message: 'Product has been deleted successfully.' });
+    return res.send({
+      error: false,
+      data: results.affectedRows,
+      message: "Product has been deleted successfully.",
+    });
   });
 };
 
@@ -149,7 +180,11 @@ const Get1User = (req, res) => {
   let sqlQuery = "SELECT * FROM USER WHERE USER_ID=" + req.params.id;
   let query = dbConn.query(sqlQuery, (err, results) => {
     if (err) throw err;
-    return res.send({ error: false, data: results[0], message: 'User Information retrieved' });
+    return res.send({
+      error: false,
+      data: results[0],
+      message: "User Information retrieved",
+    });
   });
 };
 
@@ -202,7 +237,11 @@ const PostUser = (req, res) => {
   let sqlQuery = "INSERT INTO USER SET ?";
   let query = dbConn.query(sqlQuery, data, (err, results) => {
     if (err) throw err;
-    return res.send({ error: false, data: results.affectedRows, message: 'New User information has been created successfully.' });
+    return res.send({
+      error: false,
+      data: results.affectedRows,
+      message: "New User information has been created successfully.",
+    });
   });
 };
 
@@ -233,10 +272,32 @@ const PostUser = (req, res) => {
 //  "USER_Role": "Administator"
 // }
 const PutUser = (req, res) => {
-  let sqlQuery = "UPDATE USER SET USER_Firstname='" + req.body.USER_Firstname + "', USER_Lastname='" + req.body.USER_Lastname + "', USER_Telephone='" + req.body.USER_Telephone + "', USER_Address='" + req.body.USER_Address + "', USER_EMAIL='" + req.body.USER_EMAIL + "', USER_Password='" + req.body.USER_Password + "', USER_Role='" + req.body.USER_Role + "' WHERE USER_ID=" + "'" + req.params.id + "'";
+  let sqlQuery =
+    "UPDATE USER SET USER_Firstname='" +
+    req.body.USER_Firstname +
+    "', USER_Lastname='" +
+    req.body.USER_Lastname +
+    "', USER_Telephone='" +
+    req.body.USER_Telephone +
+    "', USER_Address='" +
+    req.body.USER_Address +
+    "', USER_EMAIL='" +
+    req.body.USER_EMAIL +
+    "', USER_Password='" +
+    req.body.USER_Password +
+    "', USER_Role='" +
+    req.body.USER_Role +
+    "' WHERE USER_ID=" +
+    "'" +
+    req.params.id +
+    "'";
   let query = dbConn.query(sqlQuery, (err, results) => {
     if (err) throw err;
-    return res.send({ error: false, data: results.affectedRows, message: 'User information has been updated successfully.' })
+    return res.send({
+      error: false,
+      data: results.affectedRows,
+      message: "User information has been updated successfully.",
+    });
   });
 };
 
@@ -246,10 +307,199 @@ const PutUser = (req, res) => {
 // URL: http://localhost:4301/user/1000000003
 // URL: http://localhost:4301/user/1000000004
 const DeleteUser = (req, res) => {
-  let sqlQuery = "DELETE FROM USER WHERE USER.USER_ID=" + "'" + req.params.id + "'";
+  let sqlQuery =
+    "DELETE FROM USER WHERE USER.USER_ID=" + "'" + req.params.id + "'";
   let query = dbConn.query(sqlQuery, (err, results) => {
     if (err) throw err;
-    return res.send({ error: false, data: results.affectedRows, message: 'User information has been deleted successfully.' });
+    return res.send({
+      error: false,
+      data: results.affectedRows,
+      message: "User information has been deleted successfully.",
+    });
+  });
+};
+
+// No criteria search & Criteria search
+// Testing get product from criteria and no criteria
+// method: post
+// URL: http://localhost:4301/product-edit-search
+// body: raw (JSON)
+
+// {
+//   "USER_Firstname": "Sam",
+//   "USER_Lastname": "Willer",
+//   "USER_ID": "1000000001",
+//   "USER_Role": "Administator"
+// }
+//
+// {
+//
+// }
+//
+const SearchUser_edit = (req, res) => {
+  const USER_Firstname = req.body.USER_Firstname;
+  const USER_Lastname = req.body.USER_Lastname;
+  const USER_ID = req.body.USER_ID;
+  const USER_Role = req.body.USER_Role;
+  var CheckBefore = new Boolean(false);
+  let sqlQuery = "SELECT * FROM USER";
+  if (
+    USER_Firstname != "" &&
+    USER_Firstname != undefined &&
+    USER_Firstname != "null"
+  ) {
+    sqlQuery = sqlQuery.concat(
+      " WHERE USER_Firstname LIKE '%" + USER_Firstname + "%'"
+    );
+    CheckBefore = true;
+  }
+  if (
+    USER_Lastname != "" &&
+    USER_Lastname != undefined &&
+    USER_Lastname != "null"
+  ) {
+    if (CheckBefore == true) {
+      sqlQuery = sqlQuery.concat(" AND");
+    } else {
+      sqlQuery = sqlQuery.concat(" WHERE");
+    }
+    sqlQuery = sqlQuery.concat(
+      " USER_Lastname LIKE '%" + USER_Lastname + "%'"
+    );
+    CheckBefore = true;
+  }
+  if (USER_ID != "" && USER_ID != undefined && USER_ID != "null") {
+    if (CheckBefore == true) {
+      sqlQuery = sqlQuery.concat(" AND");
+    } else {
+      sqlQuery = sqlQuery.concat(" WHERE");
+    }
+    sqlQuery = sqlQuery.concat(" USER_ID='" + USER_ID + "'");
+    CheckBefore = true;
+  }
+  if (USER_Role != null && USER_Role != undefined && USER_Role != "null") {
+    if (CheckBefore == true) {
+      sqlQuery = sqlQuery.concat(" AND");
+    } else {
+      sqlQuery = sqlQuery.concat(" WHERE");
+    }
+    sqlQuery = sqlQuery.concat(" USER_Role='" + USER_Role + "'");
+    CheckBefore = true;
+  }  dbConn.query(sqlQuery, (err, results) => {
+    if (err) throw err;
+    res.send({
+      error: false,
+      data: results,
+      message: "Criteria Search User retrieved.",
+    });
+  });
+};
+
+// Secondary function for get the User in Result page
+const ResultUser_edit = (req, res) => {
+  const USER_ID = req.body.id;
+  let sqlQuery = "SELECT * FROM USER WHERE USER_ID=" + USER_ID;
+  dbConn.query(sqlQuery, (err, results) => {
+    if (err) throw err;
+    res.send({
+      error: false,
+      data: results,
+      message: "User result.",
+    });
+  });
+};
+
+// No criteria search & Criteria search
+// Testing get product from criteria and no criteria
+// method: post
+// URL: http://localhost:4301/product-edit-search
+// body: raw (JSON)
+
+// {
+//   "PROD_Name": "Sonic Ultimate Genesis Collection",
+//   "PROD_Type": "Video game",
+//   "PROD_Period_generation": "Seventh",
+//   "PROD_Console_type": null,
+//   "PROD_Price": 301
+// }
+//
+// {
+//
+// }
+//
+const SearchProduct_edit = (req, res) => {
+  const PROD_Name = req.body.PROD_Name;
+  const PROD_Type = req.body.PROD_Type;
+  const PROD_Period_generation = req.body.PROD_Period_generation;
+  const PROD_Console_type = req.body.PROD_Console_type;
+  const PROD_Price = req.body.PROD_Price;
+  var CheckBefore = new Boolean(false);
+  let sqlQuery = "SELECT * FROM PRODUCT";
+  if (PROD_Name != "" && PROD_Name != undefined && PROD_Name != "null") {
+    sqlQuery = sqlQuery.concat(" WHERE PROD_Name LIKE '%" + PROD_Name + "%'");
+    CheckBefore = true;
+  }
+  if (PROD_Type != null && PROD_Type != undefined && PROD_Type != "null") {
+    if (CheckBefore == true) {
+      sqlQuery = sqlQuery.concat(" AND");
+    } else {
+      sqlQuery = sqlQuery.concat(" WHERE");
+    }
+    sqlQuery = sqlQuery.concat(" PROD_Type='" + PROD_Type + "'");
+    CheckBefore = true;
+  }
+  if (PROD_Period_generation != null && PROD_Period_generation != undefined && PROD_Period_generation != "null") {
+    if (CheckBefore == true) {
+      sqlQuery = sqlQuery.concat(" AND");
+    } else {
+      sqlQuery = sqlQuery.concat(" WHERE");
+    }
+    sqlQuery = sqlQuery.concat(
+      " PROD_Period_generation='" + PROD_Period_generation + "'"
+    );
+    CheckBefore = true;
+  }
+  if (PROD_Console_type != null && PROD_Console_type != undefined && PROD_Console_type != "null") {
+    if (CheckBefore == true) {
+      sqlQuery = sqlQuery.concat(" AND");
+    } else {
+      sqlQuery = sqlQuery.concat(" WHERE");
+    }
+    sqlQuery = sqlQuery.concat(
+      " PROD_Console_type='" + PROD_Console_type + "'"
+    );
+    CheckBefore = true;
+  }
+  if (PROD_Price != "" && PROD_Price != undefined && PROD_Price != "null") {
+    if (CheckBefore == true) {
+      sqlQuery = sqlQuery.concat(" AND");
+    } else {
+      sqlQuery = sqlQuery.concat(" WHERE");
+    }
+    sqlQuery = sqlQuery.concat(" PROD_Price <= " + PROD_Price);
+    CheckBefore = true;
+  }
+  dbConn.query(sqlQuery, (err, results) => {
+    if (err) throw err;
+    res.send({
+      error: false,
+      data: results,
+      message: "Criteria Search Product retrieved.",
+    });
+  });
+};
+
+// Secondary function for get the product in Result page
+const ResultProduct_edit = (req, res) => {
+  const PROD_ID = req.body.id;
+  let sqlQuery = "SELECT * FROM PRODUCT WHERE PROD_ID=" + PROD_ID;
+  dbConn.query(sqlQuery, (err, results) => {
+    if (err) throw err;
+    res.send({
+      error: false,
+      data: results,
+      message: "Product result.",
+    });
   });
 };
 
@@ -263,5 +513,9 @@ module.exports = {
   GetAllUser,
   PostUser,
   PutUser,
-  DeleteUser
+  DeleteUser,
+  SearchUser_edit,
+  ResultUser_edit,
+  SearchProduct_edit,
+  ResultProduct_edit
 };
