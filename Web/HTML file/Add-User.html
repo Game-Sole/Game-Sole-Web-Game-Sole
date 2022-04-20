@@ -5,9 +5,10 @@
 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="../CSS file/Result_User-edit.css">
+    <link rel="stylesheet" href="../CSS file/User-edit.CSS">
     <title>Game Sole|Console online shop|</title>
 </head>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -132,27 +133,23 @@
             placeholder="Search from ID.." pattern="[0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+">
 
         <!--- Dropdown Criteria --->
-        <button type="button" class="dropdown-btn">User Role
+        <button type="button" class="dropdown-btn" style="margin-bottom: 15px;">User Role
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <label class="container">Administrator<input type="radio" name="USER_Role" value="Administator"><span
+            <label class="container">Admin<input type="radio" name="USER_Role" value="Administator"><span
                     class="checkmark"></span></label>
             <label class="container">Client<input type="radio" name="USER_Role" value="Client"><span
                     class="checkmark"></span></label>
         </div>
         <!--- Submit Button --->
-        <button class="search_bar" style="width: 190px; margin-top: 15px;" value="submit"
-            onclick="doSearch()">Search</button>
+        <button class="search_bar" style="width: 190px;" value="submit" onclick="doSearch()">Search</button>
     </div>
-    <!--- Contain a searching option --->
 
-    <!--- Item Description --->
+    <!--- Item in shop--->
     <div class="main">
-        <h2>Result</h2>
-        <div class="User" id="result-box"></div>
+        <h2>Add User</h2>
         <fieldset>
-            <h1>Update/delete</h1>
             <label for="USER_Firstname_edit">First Name</label><br>
             <input type="text" name="USER_Firstname_edit" id="USER_Firstname_edit"><br>
 
@@ -176,63 +173,84 @@
                 <option value="Client">Client</option>
             </select>
 
-            <button onclick="User_update()">Update User</button>
-            <button onclick="User_delete()">Delete User</button>
+            <button onclick="User_Add()">Add User</button>
         </fieldset>
-
+        <div></div>
         <!--- Javascript function for Search the User --->
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                getData();
+                doSearch();
             });
             function doSearch() {
-                let USER_Firstname = document.getElementById("USER_Firstname").value;
-                let USER_Lastname = document.getElementById("USER_Lastname").value;
-                let USER_ID = document.getElementById("USER_ID").value;
-                let USER_Role = document.querySelector('input[name="USER_Role"]:checked');
-                if (USER_Role != null) {
-                    USER_Role = USER_Role.value;
-                }
-                if (USER_Firstname == "") {
-                    USER_Firstname = null;
-                }
-                if (USER_Lastname == "") {
-                    USER_Lastname = null;
-                }
-                if (USER_ID == "") {
-                    USER_ID = null;
-                }
-                window.location = "/User-edit.html?firstname=" + USER_Firstname + "&"
-                    + "lastname=" + USER_Lastname + "&"
-                    + "id=" + USER_ID + "&"
-                    + "role=" + USER_Role;
-            }
+                const queryString = window.location.search;
+                if (queryString) {
 
-            function getData() {
-                let path = window.location.href;
-                let userId = path.split("/").slice(-1)[0]
-                fetch("http://localhost:4301/user-edit-result", {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        id: userId
+                    const urlParams = new URLSearchParams(queryString);
+                    let USER_Firstname = urlParams.get('firstname');
+                    let USER_Lastname = urlParams.get('lastname');
+                    let USER_ID = urlParams.get('id');
+                    let USER_Role = urlParams.get('role');
+                    fetch("http://localhost:4301/user-edit-search", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            USER_Firstname: USER_Firstname,
+                            USER_Lastname: USER_Lastname,
+                            USER_ID: USER_ID,
+                            USER_Role: USER_Role
+                        })
                     })
-                })
-                    .then(response => response.json())
-                    .then(data => setResult(data));
+                        .then(response => response.json())
+                        .then(data => setResult(data));
+                    window.history.pushState({}, document.title, "/" + "User-edit.html");
+                } else {
+                    let USER_Firstname = document.getElementById("USER_Firstname").value;
+                    let USER_Lastname = document.getElementById("USER_Lastname").value;
+                    let USER_ID = document.getElementById("USER_ID").value;
+                    let USER_Role = document.querySelector('input[name="USER_Role"]:checked');
+                    if (USER_Role != null) {
+                        USER_Role = USER_Role.value;
+                    }
+                    fetch("http://localhost:4301/user-edit-search", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            USER_Firstname: USER_Firstname,
+                            USER_Lastname: USER_Lastname,
+                            USER_ID: USER_ID,
+                            USER_Role: USER_Role
+                        })
+                    })
+                        .then(response => response.json())
+                        .then(data => setResult(data));
+                }
+
             }
 
             function setResult(data) {
+                let output = "<tr><th style='width: 15%'>UserID</th><th style='width: 20%'>Username</th> <th style='width: 20%'>Address</th><th style='width: 20%'>Telephone number</th> <th style='width: 25%'>Email</th></tr>";
+                let box = document.getElementById("result-box");
+                box.innerHTML = "";
+                var i = 0;
                 for (let n of data.data) {
-                    output = "<article>UserID:  " + n.USER_ID + "<br>Username:  " + n.USER_Firstname + " " + n.USER_Lastname + "<br>Address:  " + n.USER_Address + "<br>Telephone number:  " + n.USER_Telephone + "<br>Email:  " + n.USER_EMAIL + "</article>";
+                    i = i + 1;
+                    output = output + "<tr><td> <a href=/Result_User-edit.html/" + n.USER_ID + " style='text-decoration: underline ;color: black;'>" + n.USER_ID + "</a></td><td>" + n.USER_Firstname + " " + n.USER_Lastname + "</td><td>" + n.USER_Address + "</td><td>" + n.USER_Telephone + "</td><td>" + n.USER_EMAIL + "</td></tr></a>"
                 }
-                document.getElementById("result-box").innerHTML = output;
+                if (i == 0) output = "<figcaption style='margin-left: 40px;'>No matched user.</figcaption>"
+                box.innerHTML = output;
             }
 
-            //For update
-            function User_update() {
+            function Reset() {
+                var USER_Role = document.getElementsByTagName('input');
+                USER_Role.checked = false;
+            }
+
+            //For Add User
+            function User_Add() {
                 let USER_Firstname_edit = document.getElementById("USER_Firstname_edit");
                 let USER_Lastname_edit = document.getElementById("USER_Lastname_edit");
                 let USER_Telephone_edit = document.getElementById("USER_Telephone_edit");
@@ -268,11 +286,8 @@
 
                 USER_Role_edit = USER_Role_edit.options[USER_Role_edit.selectedIndex].text;
 
-                var pathArray = window.location.pathname.split('/');
-                var USER_ID = pathArray[pathArray.length - 1];
-
-                fetch("http://localhost:4301/Result_User-edit/" + String(USER_ID), {
-                    method: "PUT",
+                fetch("http://localhost:4301/Result_User-Add/", {
+                    method: "POST",
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -287,20 +302,9 @@
                     })
                 }).then(window.location.replace("http://localhost:4301/User-edit.html"))
             }
-
-            //this is for delete user
-            function User_delete() {
-                var pathArray = window.location.pathname.split('/');
-                var USER_ID = pathArray[pathArray.length - 1];
-                fetch("http://localhost:4301/Result_User-delete/" + String(USER_ID), {
-                    method: "DELETE",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(window.location.replace("http://localhost:4301/User-edit.html"))
-            }
         </script>
     </div>
+    <!--- Item in shop--->
 
     <!--- Javascript function for drop down button --->
     <script>

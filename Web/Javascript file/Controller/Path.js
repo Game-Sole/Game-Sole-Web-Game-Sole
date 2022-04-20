@@ -66,6 +66,16 @@ const Result_Product_edit = (cors(), (req, res) => {
     res.sendFile(path.join(__dirname, '/../../HTML file/Result_Product-edit.html'))
 });
 
+// http://localhost:4301/Add-product
+const Add_Product_edit = (cors(), (req, res) => {
+    res.sendFile(path.join(__dirname, '/../../HTML file/Add-product.html'))
+});
+
+// http://localhost:4301/Add-product
+const Add_User_edit = (cors(), (req, res) => {
+    res.sendFile(path.join(__dirname, '/../../HTML file/Add-User.html'))
+});
+
 module.exports = {
     AboutUs,
     Chayut,
@@ -80,4 +90,6 @@ module.exports = {
     Result_User_edit,
     Product_edit,
     Result_Product_edit,
+    Add_Product_edit,
+    Add_User_edit,
 };

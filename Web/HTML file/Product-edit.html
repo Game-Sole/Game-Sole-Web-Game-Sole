@@ -27,20 +27,11 @@
                     $('.Logout-navbar').show();
                     document.getElementById("User-email").innerHTML = "<p>" + "Admin: " + obj.email + "</p>";
                 } else {
-                    $('.Register-navbar').hide();
-                    $('.Login-navbar').hide();
-                    $('.User-edit').hide();
-                    $('.Product-edit').hide();
-                    $('.Logout-navbar').show();
-                    document.getElementById("User-email").innerHTML = "<p>" + obj.email + "</p>";
+                    document.location.href = '/Homepage.html';
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                $('.Logout-navbar').hide();
-                $('.User-edit').hide();
-                $('.Product-edit').hide();
-                $('.Register-navbar').show();
-                $('.Login-navbar').show();
+                document.location.href = '/Homepage.html';
             }
         });
 
@@ -187,6 +178,7 @@
     <!--- Item in shop--->
     <div class="main">
         <h2>Edit Product Page</h2>
+        <h2><a href="Add-product.html">Add new Product</a></h2>
         <!--- Item in shop--->
         <div class="Product" id="result-box"></div>
 

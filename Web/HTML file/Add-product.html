@@ -5,7 +5,7 @@
 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="../CSS file/Result_Product-edit.css">
+    <link rel="stylesheet" href="../CSS file/Product-edit.css">
     <title>Game Sole|Console online shop|</title>
 </head>
 
@@ -94,27 +94,27 @@
 
         <!--- Homepage button link to Home page --->
         <nav class="Homepage">
-            <a href="/Homepage.html"><img src="../images/Navigation Bar Home.png" /></a>
+            <a href="Homepage.html"><img src="../images/Navigation Bar Home.png" /></a>
         </nav>
 
         <!--- Shopping button link to Shop page --->
         <nav class="Shopping">
-            <a href="/ShopPage.html"><img src="../images/Navigation Bar Shop Idle.png" /></a>
+            <a href="ShopPage.html"><img src="../images/Navigation Bar Shop Idle.png" /></a>
         </nav>
 
         <!--- About Us button link to About US page --->
         <nav class="About US">
-            <a href="/AboutUs.html"><img src="../images/Navigation Bar About Us Idle.png" /></a>
+            <a href="AboutUs.html"><img src="../images/Navigation Bar About Us Idle.png" /></a>
         </nav>
 
         <!--- User edit button link to admin edit User page --->
         <nav class="User-edit">
-            <a href="/User-edit.html"><img src="../images/Navigation Bar User  Idle.png" /></a>
+            <a href="User-edit.html"><img src="../images/Navigation Bar User  Idle.png" /></a>
         </nav>
 
         <!--- Product edit button link to admin edit product page --->
         <nav class="Product-edit">
-            <a href="/Product-edit.html"><img src="../images/Navigation Bar Product Press.png" /></a>
+            <a href="Product-edit.html"><img src="../images/Navigation Bar Product Press.png" /></a>
         </nav>
     </nav>
 
@@ -168,19 +168,17 @@
                     value="home console player"><span class="checkmark"></span></label>
         </div>
         <!--- Price Bar --->
-        <input class="search_bar" style="width: 182px;  margin-top: 15px;" type="text" id="PROD_Price" name="PROD_Price"
+        <input class="search_bar" style="width: 182px; margin-top: 15px;" type="text" id="PROD_Price" name="PROD_Price"
             placeholder="Price.." pattern="[0-9?~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]+">
         <!--- Submit Button --->
         <button class="search_bar" style="width: 190px;" value="submit" onclick="doSearch()">Search</button>
     </div>
     <!--- Contain a searching option --->
 
-    <!--- Item Description --->
+    <!--- Item in shop--->
     <div class="main">
-        <h2>Result for Product edit</h2>
-        <div class="Product" id="result-box"></div>
+        <h2>Add New Product</h2>
         <fieldset>
-            <h1>Update/delete</h1>
             <label for="PROD_Name_edit">Name</label><br>
             <input type="text" name="PROD_Name_edit" id="PROD_Name_edit"><br>
 
@@ -218,81 +216,81 @@
                 <option value="NULL">NULL</option>
             </select>
 
-            <button onclick="Product_update()">Update product</button>
-            <button onclick="Product_delete()">Delete product</button>
+            <button onclick="Product_Add()">Add product</button>
         </fieldset>
 
         <!--- Javascript function for Search the Product --->
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                getData();
+                doSearch();
             });
-
-            $('#edit-form').submit(function () {
-                var pathArray = window.location.pathname.split('/');
-                var PROD_ID = pathArray[-1];
-                var form = document.getElementById("edit-form");
-                var url = "/Result_Product-edit/" + String(PROD_ID);
-                //form.action = url;
-                console.log(url)
-                return false;
-            });
-
             function doSearch() {
-                let PROD_Name = document.getElementById("PROD_Name").value;
-                let PROD_Price = document.getElementById("PROD_Price").value;
-                let PROD_Type = document.querySelector('input[name="PROD_Type"]:checked');
-                let PROD_Period_generation = document.querySelector('input[name="PROD_Period_generation"]:checked');
-                let PROD_Console_type = document.querySelector('input[name="PROD_Console_type"]:checked');
-                if (PROD_Type != null) {
-                    PROD_Type = PROD_Type.value;
-                }
-                if (PROD_Period_generation != null) {
-                    PROD_Period_generation = PROD_Period_generation.value;
-                }
-                if (PROD_Console_type != null) {
-                    PROD_Console_type = PROD_Console_type.value;
-                }
-                if (PROD_Name == "") {
-                    PROD_Name = null;
-                }
-                if (PROD_Price == "") {
-                    PROD_Price = null;
-                }
-                window.location = "/Product-edit.html?name=" + PROD_Name + "&"
-                    + "price=" + PROD_Price + "&"
-                    + "type=" + PROD_Type + "&"
-                    + "gen=" + PROD_Period_generation + "&"
-                    + "content-type=" + PROD_Console_type;
-            }
+                const queryString = window.location.search;
+                if (queryString) {
 
-            function getData() {
-                let path = window.location.href;
-                let productId = path.split("/").slice(-1)[0]
-                console.log(productId);
-                fetch("http://localhost:4301/product-edit-result", {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        id: productId
+                    const urlParams = new URLSearchParams(queryString);
+                    let PROD_Name = urlParams.get('name');
+                    let PROD_Price = urlParams.get('price');
+                    let PROD_Type = urlParams.get('type');
+                    let PROD_Period_generation = urlParams.get('gen');
+                    let PROD_Console_type = urlParams.get('content-type');
+                    fetch("http://localhost:4301/product-edit-search", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            PROD_Name: PROD_Name,
+                            PROD_Type: PROD_Type,
+                            PROD_Period_generation: PROD_Period_generation,
+                            PROD_Console_type: PROD_Console_type,
+                            PROD_Price: PROD_Price
+                        })
                     })
-                })
-                    .then(response => response.json())
-                    .then(data => setResult(data));
-            }
-
-            function setResult(data) {
-                console.log(data)
-                for (let n of data.data) {
-                    output = "<a><article><figure><img src=" + n.PROD_Image + "><figcaption>" + n.PROD_Name + "</figcaption><br><figcaption>" + n.PROD_Price + " Baht</figcaption><br></figure><label for='Description'>" + n.PROD_Description + "</label></article></a>";
+                        .then(response => response.json())
+                        .then(data => setResult(data));
+                    window.history.pushState({}, document.title, "/" + "Product-edit.html");
+                } else {
+                    let PROD_Name = document.getElementById("PROD_Name").value;
+                    let PROD_Price = document.getElementById("PROD_Price").value;
+                    let PROD_Type = document.querySelector('input[name="PROD_Type"]:checked');
+                    let PROD_Period_generation = document.querySelector('input[name="PROD_Period_generation"]:checked');
+                    let PROD_Console_type = document.querySelector('input[name="PROD_Console_type"]:checked');
+                    if (PROD_Type != null) {
+                        PROD_Type = PROD_Type.value;
+                    }
+                    if (PROD_Period_generation != null) {
+                        PROD_Period_generation = PROD_Period_generation.value;
+                    }
+                    if (PROD_Console_type != null) {
+                        PROD_Console_type = PROD_Console_type.value;
+                    }
+                    fetch("http://localhost:4301/product-edit-search", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            PROD_Name: PROD_Name,
+                            PROD_Type: PROD_Type,
+                            PROD_Period_generation: PROD_Period_generation,
+                            PROD_Console_type: PROD_Console_type,
+                            PROD_Price: PROD_Price
+                        })
+                    })
+                        .then(response => response.json())
+                        .then(data => setResult(data));
                 }
-                document.getElementById("result-box").innerHTML = output;
+
             }
 
-            //For update
-            function Product_update() {
+            function Reset() {
+                var PROD_Type_radio = document.getElementsByTagName('input');
+                PROD_Type_radio.checked = false;
+            }
+
+            //For Add new product
+            function Product_Add() {
                 let PROD_Name_edit = document.getElementById("PROD_Name_edit");
                 let PROD_Price_edit = document.getElementById("PROD_Price_edit");
                 let PROD_Description_edit = document.getElementById("PROD_Description_edit");
@@ -325,8 +323,8 @@
                 var pathArray = window.location.pathname.split('/');
                 var PROD_ID = pathArray[pathArray.length - 1];
 
-                fetch("http://localhost:4301/Result_Product-edit/" + String(PROD_ID), {
-                    method: "PUT",
+                fetch("http://localhost:4301/Result_Product-Add/", {
+                    method: "POST",
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -341,20 +339,9 @@
                     })
                 }).then(window.location.replace("http://localhost:4301/Product-edit.html"))
             }
-
-            //this is for delete product
-            function Product_delete() {
-                var pathArray = window.location.pathname.split('/');
-                var PROD_ID = pathArray[pathArray.length - 1];
-                fetch("http://localhost:4301/Result_Product-delete/" + String(PROD_ID), {
-                    method: "DELETE",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(window.location.replace("http://localhost:4301/Product-edit.html"))
-            }
         </script>
     </div>
+    <!--- Item in shop--->
 
     <!--- Javascript function for drop down button --->
     <script>

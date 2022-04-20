@@ -26,29 +26,29 @@ let dbConn = mysql.createConnection({
 // method: get
 // URL: http://localhost:4301/product/1
 // URL: http://localhost:4301/product/2
-const Get1Product = (req, res) => {
-  let sqlQuery = "SELECT * FROM PRODUCT WHERE PROD_ID=" + req.params.id;
-  let query = dbConn.query(sqlQuery, (err, results) => {
-    if (err) throw err;
-    return res.send({
-      error: false,
-      data: results[0],
-      message: "Product retrieved",
-    });
-  });
-};
+// const Get1Product = (req, res) => {
+//   let sqlQuery = "SELECT * FROM PRODUCT WHERE PROD_ID=" + req.params.id;
+//   let query = dbConn.query(sqlQuery, (err, results) => {
+//     if (err) throw err;
+//     return res.send({
+//       error: false,
+//       data: results[0],
+//       message: "Product retrieved",
+//     });
+//   });
+// };
 
 //View
 // Testing get all product
 // method: get
 // URL: http://localhost:4301/products
-const GetAllProduct = (req, res) => {
-  //jpeg file in the base64 format.
-  dbConn.query("SELECT * FROM PRODUCT", function (error, results) {
-    if (error) throw error;
-    return res.send({ error: false, data: results, message: "Products list." });
-  });
-};
+// const GetAllProduct = (req, res) => {
+//   //jpeg file in the base64 format.
+//   dbConn.query("SELECT * FROM PRODUCT", function (error, results) {
+//     if (error) throw error;
+//     return res.send({ error: false, data: results, message: "Products list." });
+//   });
+// };
 
 //Insert
 // Testing get insert new product
@@ -57,7 +57,6 @@ const GetAllProduct = (req, res) => {
 // body: raw (JSON)
 //
 // {
-//   "PROD_ID": 101,
 //   "PROD_Name": "It take two",
 //   "PROD_Price": 445,
 //   "PROD_Description": "Wins the game awards 2021 with a huge amount of positive reviews",
@@ -68,7 +67,6 @@ const GetAllProduct = (req, res) => {
 // }
 //
 // {
-//   "PROD_ID": 102,
 //   "PROD_Name": "Wii console",
 //   "PROD_Price": "5990",
 //   "PROD_Description": "NULL",
@@ -79,7 +77,6 @@ const GetAllProduct = (req, res) => {
 // }
 const PostProduct = (req, res) => {
   let data = {
-    PROD_ID: req.body.PROD_ID,
     PROD_Name: req.body.PROD_Name,
     PROD_Price: req.body.PROD_Price,
     PROD_Description: req.body.PROD_Description,
@@ -159,7 +156,7 @@ const PutProduct = (req, res) => {
 // URL: http://localhost:4301/product/1
 // URL: http://localhost:4301/product/2
 const DeleteProduct = (req, res) => {
-  let sqlQuery = "DELETE FROM PRODUCT WHERE PROD_ID=" + req.params.id + "";
+  let sqlQuery = "DELETE FROM PRODUCT WHERE PROD_ID=" + req.params.id;
   let query = dbConn.query(sqlQuery, (err, results) => {
     if (err) throw err;
     return res.send({
@@ -176,28 +173,28 @@ const DeleteProduct = (req, res) => {
 // method: get
 // URL: http://localhost:4301/user/1000000001
 // URL: http://localhost:4301/user/1000000002
-const Get1User = (req, res) => {
-  let sqlQuery = "SELECT * FROM USER WHERE USER_ID=" + req.params.id;
-  let query = dbConn.query(sqlQuery, (err, results) => {
-    if (err) throw err;
-    return res.send({
-      error: false,
-      data: results[0],
-      message: "User Information retrieved",
-    });
-  });
-};
+// const Get1User = (req, res) => {
+//   let sqlQuery = "SELECT * FROM USER WHERE USER_ID=" + req.params.id;
+//   let query = dbConn.query(sqlQuery, (err, results) => {
+//     if (err) throw err;
+//     return res.send({
+//       error: false,
+//       data: results[0],
+//       message: "User Information retrieved",
+//     });
+//   });
+// };
 
 //View
 // Testing get all User information
 // method: get
 // URL: http://localhost:4301/users
-const GetAllUser = (req, res) => {
-  dbConn.query("SELECT * FROM USER", function (error, results) {
-    if (error) throw error;
-    return res.send({ error: false, data: results, message: "Users list." });
-  });
-};
+// const GetAllUser = (req, res) => {
+//   dbConn.query("SELECT * FROM USER", function (error, results) {
+//     if (error) throw error;
+//     return res.send({ error: false, data: results, message: "Users list." });
+//   });
+// };
 
 //Insert
 // Testing insert new User
@@ -288,9 +285,7 @@ const PutUser = (req, res) => {
     "', USER_Role='" +
     req.body.USER_Role +
     "' WHERE USER_ID=" +
-    "'" +
-    req.params.id +
-    "'";
+    req.params.id;
   let query = dbConn.query(sqlQuery, (err, results) => {
     if (err) throw err;
     return res.send({
@@ -308,7 +303,7 @@ const PutUser = (req, res) => {
 // URL: http://localhost:4301/user/1000000004
 const DeleteUser = (req, res) => {
   let sqlQuery =
-    "DELETE FROM USER WHERE USER.USER_ID=" + "'" + req.params.id + "'";
+    "DELETE FROM USER WHERE USER.USER_ID=" + req.params.id;
   let query = dbConn.query(sqlQuery, (err, results) => {
     if (err) throw err;
     return res.send({
@@ -318,6 +313,26 @@ const DeleteUser = (req, res) => {
     });
   });
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // No criteria search & Criteria search
 // Testing get product from criteria and no criteria
@@ -504,13 +519,13 @@ const ResultProduct_edit = (req, res) => {
 };
 
 module.exports = {
-  Get1Product,
-  GetAllProduct,
+  // Get1Product,
+  // GetAllProduct,
   PostProduct,
   PutProduct,
   DeleteProduct,
-  Get1User,
-  GetAllUser,
+  // Get1User,
+  // GetAllUser,
   PostUser,
   PutUser,
   DeleteUser,

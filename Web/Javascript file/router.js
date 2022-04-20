@@ -4,7 +4,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 
 // Website path------------------------------------------------------------------------------------------------------------
-const { AboutUs, Chayut, Kanapon, Theetrat, Homepage, Login, Register, ShopPage, Result, User_edit, Result_User_edit, Product_edit, Result_Product_edit } = require("./Controller/Path");
+const { AboutUs, Chayut, Kanapon, Theetrat, Homepage, Login, Register, ShopPage, Result, User_edit, Result_User_edit, Product_edit, Result_Product_edit, Add_Product_edit, Add_User_edit } = require("./Controller/Path");
 
 // http://localhost:4301/AboutUs.html
 router.get("/AboutUs.html", AboutUs);
@@ -45,30 +45,31 @@ router.get("/Product-edit.html", Product_edit);
 // http://localhost:4301/Result_Product-edit.html
 router.get("/Result_Product-edit.html/:id", Result_Product_edit);
 
-// This is for task 3 only admin can see this.
-// router.get('/secret-route', (req, res, next) => {
-//     res.send('This is the CRUD operation for admin');
-// });
+// http://localhost:4301/Add-product.html
+router.get("/Add-product.html", Add_Product_edit);
+
+// http://localhost:4301/Add-product.html
+router.get("/Add-User.html", Add_User_edit);
 
 // Website path------------------------------------------------------------------------------------------------------------
 
 //AdministratorService------------------------------------------------------------------------------------------------------------
-const { Get1Product, GetAllProduct, PostProduct, PutProduct, DeleteProduct, Get1User, GetAllUser, PostUser, PutUser, DeleteUser, SearchUser_edit, ResultUser_edit, SearchProduct_edit, ResultProduct_edit} = require("./Controller/AdministratorService");
+const { /*Get1Product, GetAllProduct,*/ PostProduct, PutProduct, DeleteProduct, /*Get1User, GetAllUser,*/ PostUser, PutUser, DeleteUser, SearchUser_edit, ResultUser_edit, SearchProduct_edit, ResultProduct_edit} = require("./Controller/AdministratorService");
 //See test case in filename 'AdministratorService.js' on folder 'Controller'
 
 //For CRUD product
-router.get("/product/:id", Get1Product);
-router.get("/products", GetAllProduct);
-router.post("/product", PostProduct);
-router.put("/product/:id", PutProduct);
-router.delete("/product/:id", DeleteProduct);
+// router.get("/product/:id", Get1Product); this is an old version of search
+// router.get("/products", GetAllProduct); this is an old version of search
+router.post("/Result_Product-Add", PostProduct);
+router.put("/Result_Product-edit/:id", PutProduct);
+router.delete("/Result_Product-delete/:id", DeleteProduct);
 
 //For CRUD user
-router.get("/user/:id", Get1User);
-router.get("/users", GetAllUser);
-router.post("/user", PostUser);
-router.put("/user/:id", PutUser);
-router.delete("/user/:id", DeleteUser);
+// router.get("/user/:id", Get1User); this is an old version of search
+// router.get("/users", GetAllUser); this is an old version of search
+router.post("/Result_User-Add", PostUser);
+router.put("/Result_User-edit/:id", PutUser);
+router.delete("/Result_User-delete/:id", DeleteUser);
 
 //For search User
 router.post("/user-edit-search", SearchUser_edit);
