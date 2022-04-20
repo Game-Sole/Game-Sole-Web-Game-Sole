@@ -179,8 +179,8 @@
     <div class="main">
         <h2>Result for Product edit</h2>
         <div class="Product" id="result-box"></div>
-        <fieldset>
-            <h1>Update/delete</h1>
+        <fieldset class="update-delete">
+            <h2 style="margin-left: 0;">Update/delete</h2>
             <label for="PROD_Name_edit">Name</label><br>
             <input type="text" name="PROD_Name_edit" id="PROD_Name_edit"><br>
 
@@ -193,13 +193,13 @@
             <label for="PROD_Image_edit">Image link</label><br>
             <input type="text" name="PROD_Image_edit" id="PROD_Image_edit"><br>
 
-            <select for="PROD_Type_edit" name="PROD_Type_edit" id="PROD_Type_edit">
+            <select style="height: 20px; margin-top: 20px;" for="PROD_Type_edit" name="PROD_Type_edit" id="PROD_Type_edit">
                 <option value="Video game">Video game</option>
                 <option value="Game player">Game player</option>
                 <option value="Controller">Controller</option>
             </select>
 
-            <select for="PROD_Period_generation_edit" name="PROD_Period_generation_edit"
+            <select style="height: 20px; margin-top: 20px;" for="PROD_Period_generation_edit" name="PROD_Period_generation_edit"
                 id="PROD_Period_generation_edit">
                 <option value="First">First</option>
                 <option value="Second">Second</option>
@@ -212,14 +212,14 @@
                 <option value="Ninth">Ninth</option>
             </select>
 
-            <select for="PROD_Console_type_edit" name="PROD_Console_type_edit" id="PROD_Console_type_edit">
+            <select style="height: 20px; margin-top: 20px;" for="PROD_Console_type_edit" name="PROD_Console_type_edit" id="PROD_Console_type_edit">
                 <option value="home console player">home console player</option>
                 <option value="handheld console player">handheld console player</option>
                 <option value="NULL">NULL</option>
-            </select>
+            </select><br>
 
-            <button onclick="Product_update()">Update product</button>
-            <button onclick="Product_delete()">Delete product</button>
+            <button style="color: green; margin-top: 20px;" onclick="Product_update()">Update product</button>
+            <button style="color: red;" onclick="Product_delete()">Delete product</button>
         </fieldset>
 
         <!--- Javascript function for Search the Product --->
@@ -286,7 +286,7 @@
             function setResult(data) {
                 console.log(data)
                 for (let n of data.data) {
-                    output = "<a><article><figure><img src=" + n.PROD_Image + "><figcaption>" + n.PROD_Name + "</figcaption><br><figcaption>" + n.PROD_Price + " Baht</figcaption><br></figure><label for='Description'>" + n.PROD_Description + "</label></article></a>";
+                    output = "<a><article><figure><img src=" + n.PROD_Image + "><figcaption>" + n.PROD_Name + "</figcaption><br><figcaption>" + n.PROD_Price + " Baht</figcaption><br><figcaption>Console type : " + n.PROD_Console_type + "</figcaption><br><figcaption>Period generation : " + n.PROD_Period_generation + "</figcaption><br></figure><label for='Description'>" + n.PROD_Description + "</label></article></a>";
                 }
                 document.getElementById("result-box").innerHTML = output;
             }

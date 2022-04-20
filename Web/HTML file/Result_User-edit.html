@@ -151,8 +151,8 @@
     <div class="main">
         <h2>Result</h2>
         <div class="User" id="result-box"></div>
-        <fieldset>
-            <h1>Update/delete</h1>
+        <fieldset class="update-delete">
+            <h2 style="margin-left: 0;">Update/delete</h2>
             <label for="USER_Firstname_edit">First Name</label><br>
             <input type="text" name="USER_Firstname_edit" id="USER_Firstname_edit"><br>
 
@@ -171,13 +171,12 @@
             <label for="USER_Password_edit">Password</label><br>
             <input type="text" name="USER_Password_edit" id="USER_Password_edit"><br>
 
-            <select for="USER_Role_edit" name="USER_Role_edit" id="USER_Role_edit">
-                <option value="Administator">Administator</option>
+            <select style="height: 20px; margin-top: 20px;" for="USER_Role_edit" name="USER_Role_edit" id="USER_Role_edit">
+                <option value="Administator">Administrator</option>
                 <option value="Client">Client</option>
-            </select>
-
-            <button onclick="User_update()">Update User</button>
-            <button onclick="User_delete()">Delete User</button>
+            </select><br>
+            <button style="color: green; margin-top: 20px;" onclick="User_update()">Update User</button>
+            <button style="color: red;" onclick="User_delete()">Delete User</button>
         </fieldset>
 
         <!--- Javascript function for Search the User --->
@@ -226,7 +225,7 @@
 
             function setResult(data) {
                 for (let n of data.data) {
-                    output = "<article>UserID:  " + n.USER_ID + "<br>Username:  " + n.USER_Firstname + " " + n.USER_Lastname + "<br>Address:  " + n.USER_Address + "<br>Telephone number:  " + n.USER_Telephone + "<br>Email:  " + n.USER_EMAIL + "</article>";
+                    output = "<article>UserID:  " + n.USER_ID + "<br>Username:  " + n.USER_Firstname + " " + n.USER_Lastname + "<br>Address:  " + n.USER_Address + "<br>Telephone number:  " + n.USER_Telephone + "<br>Email:  " + n.USER_EMAIL + "<br>Password:  " + n.USER_Password + "<br>Role:  " + n.USER_Role + "</article>";
                 }
                 document.getElementById("result-box").innerHTML = output;
             }

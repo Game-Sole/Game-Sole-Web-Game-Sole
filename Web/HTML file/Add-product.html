@@ -177,8 +177,8 @@
 
     <!--- Item in shop--->
     <div class="main">
-        <h2>Add New Product</h2>
-        <fieldset>
+        <h2 style="margin-right: 80%;">Add New Product</h2>
+        <fieldset class="Add">
             <label for="PROD_Name_edit">Name</label><br>
             <input type="text" name="PROD_Name_edit" id="PROD_Name_edit"><br>
 
@@ -191,13 +191,13 @@
             <label for="PROD_Image_edit">Image link</label><br>
             <input type="text" name="PROD_Image_edit" id="PROD_Image_edit"><br>
 
-            <select for="PROD_Type_edit" name="PROD_Type_edit" id="PROD_Type_edit">
+            <select style="height: 20px; margin-top: 20px;" for="PROD_Type_edit" name="PROD_Type_edit" id="PROD_Type_edit">
                 <option value="Video game">Video game</option>
                 <option value="Game player">Game player</option>
                 <option value="Controller">Controller</option>
             </select>
 
-            <select for="PROD_Period_generation_edit" name="PROD_Period_generation_edit"
+            <select style="height: 20px; margin-top: 20px;" for="PROD_Period_generation_edit" name="PROD_Period_generation_edit"
                 id="PROD_Period_generation_edit">
                 <option value="First">First</option>
                 <option value="Second">Second</option>
@@ -210,13 +210,13 @@
                 <option value="Ninth">Ninth</option>
             </select>
 
-            <select for="PROD_Console_type_edit" name="PROD_Console_type_edit" id="PROD_Console_type_edit">
+            <select style="height: 20px; margin-top: 20px;" for="PROD_Console_type_edit" name="PROD_Console_type_edit" id="PROD_Console_type_edit">
                 <option value="home console player">home console player</option>
                 <option value="handheld console player">handheld console player</option>
                 <option value="NULL">NULL</option>
-            </select>
+            </select><br>
 
-            <button onclick="Product_Add()">Add product</button>
+            <button style="color: green; margin-top: 20px;" onclick="Product_Add()">Add product</button>
         </fieldset>
 
         <!--- Javascript function for Search the Product --->

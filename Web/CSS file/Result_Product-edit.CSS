@@ -265,15 +265,21 @@
     padding: 5px;
   }
   
-  /* Set text article properties. */
-  
-  article {
-    float: left;
-  }
-  
   /* Set h2 in header properties. */
   
   h2 {
     margin-left: 40px;
   }
-  
+
+   /* Set input in fieldset properties. */
+
+   .update-delete {
+    margin-top: 20px;
+    margin-left: 40px;
+  }
+
+  /* Set label in input in fieldset properties. */
+
+  .update-delete label{
+    line-height: 1.8;
+  }

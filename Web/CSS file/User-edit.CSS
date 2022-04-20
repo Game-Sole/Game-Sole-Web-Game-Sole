@@ -284,6 +284,7 @@
   
   h2 {
     margin-left: 40px;
+    float: left;
   }
   
   /* Set table properties. */
@@ -298,3 +299,16 @@
   tr{
     line-height: 1.8;
   }
+
+  /* Set input in fieldset properties. */
+
+.Add {
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+/* Set label in input in fieldset properties. */
+
+.Add label {
+  line-height: 1.8;
+}

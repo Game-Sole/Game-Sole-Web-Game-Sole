@@ -242,7 +242,7 @@
             function setResult(data) {
                 console.log(data)
                 for (let n of data.data) {
-                    output = "<a><article><figure><img src=" + n.PROD_Image + "><figcaption>" + n.PROD_Name + "</figcaption><br><figcaption>" + n.PROD_Price + " Baht</figcaption><br></figure><label for='Description'>" + n.PROD_Description + "</label></article></a>";
+                    output = "<a><article><figure><img src=" + n.PROD_Image + "><figcaption>" + n.PROD_Name + "</figcaption><br><figcaption>" + n.PROD_Price + " Baht</figcaption><br><figcaption>Console type : " + n.PROD_Console_type + "</figcaption><br><figcaption>Period generation : " + n.PROD_Period_generation + "</figcaption><br></figure><label for='Description'>" + n.PROD_Description + "</label></article></a>";
                 }
                 document.getElementById("result-box").innerHTML = output;
             }

@@ -148,8 +148,8 @@
 
     <!--- Item in shop--->
     <div class="main">
-        <h2>Add User</h2>
-        <fieldset>
+        <h2 style="margin-right: 90%;">Add User</h2>
+        <fieldset class="Add">
             <label for="USER_Firstname_edit">First Name</label><br>
             <input type="text" name="USER_Firstname_edit" id="USER_Firstname_edit"><br>
 
@@ -168,12 +168,12 @@
             <label for="USER_Password_edit">Password</label><br>
             <input type="text" name="USER_Password_edit" id="USER_Password_edit"><br>
 
-            <select for="USER_Role_edit" name="USER_Role_edit" id="USER_Role_edit">
+            <select style="height: 20px; margin-top: 20px;" for="USER_Role_edit" name="USER_Role_edit" id="USER_Role_edit">
                 <option value="Administator">Administator</option>
                 <option value="Client">Client</option>
-            </select>
+            </select><br>
 
-            <button onclick="User_Add()">Add User</button>
+            <button style="color: green; margin-top: 20px;" onclick="User_Add()">Add User</button>
         </fieldset>
         <div></div>
         <!--- Javascript function for Search the User --->
