@@ -168,7 +168,8 @@
             <label for="USER_Password_edit">Password</label><br>
             <input type="text" name="USER_Password_edit" id="USER_Password_edit"><br>
 
-            <select style="height: 20px; margin-top: 20px;" for="USER_Role_edit" name="USER_Role_edit" id="USER_Role_edit">
+            <select style="height: 20px; margin-top: 20px;" for="USER_Role_edit" name="USER_Role_edit"
+                id="USER_Role_edit">
                 <option value="Administator">Administator</option>
                 <option value="Client">Client</option>
             </select><br>
@@ -280,6 +281,10 @@
 
                 if (USER_Password_edit != null) {
                     USER_Password_edit = USER_Password_edit.value;
+                }
+
+                if (USER_Firstname_edit.length < 1 || USER_Lastname_edit.length < 1 || USER_Telephone_edit.length < 1 || USER_Address_edit.length < 1 || USER_EMAIL_edit.length < 1 || USER_Password_edit.length < 1) {
+                    return window.location.reload();
                 }
 
                 let USER_Role_edit = document.getElementById("USER_Role_edit");

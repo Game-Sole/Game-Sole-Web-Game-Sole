@@ -312,6 +312,10 @@
                     PROD_Image_edit = PROD_Image_edit.value;
                 }
 
+                if (PROD_Name_edit.length < 1 || PROD_Price_edit.length < 1 || PROD_Description_edit.length < 1 || PROD_Image_edit.length < 1) {
+                    return window.location.reload();
+                }
+
                 let PROD_Type_edit = document.getElementById("PROD_Type_edit");
                 let PROD_Period_generation_edit = document.getElementById("PROD_Period_generation_edit");
                 let PROD_Console_type_edit = document.getElementById("PROD_Console_type_edit");
