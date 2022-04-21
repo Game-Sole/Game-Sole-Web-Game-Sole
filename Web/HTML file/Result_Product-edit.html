@@ -193,14 +193,15 @@
             <label for="PROD_Image_edit">Image link</label><br>
             <input type="text" name="PROD_Image_edit" id="PROD_Image_edit"><br>
 
-            <select style="height: 20px; margin-top: 20px;" for="PROD_Type_edit" name="PROD_Type_edit" id="PROD_Type_edit">
+            <select style="height: 20px; margin-top: 20px;" for="PROD_Type_edit" name="PROD_Type_edit"
+                id="PROD_Type_edit">
                 <option value="Video game">Video game</option>
                 <option value="Game player">Game player</option>
                 <option value="Controller">Controller</option>
             </select>
 
-            <select style="height: 20px; margin-top: 20px;" for="PROD_Period_generation_edit" name="PROD_Period_generation_edit"
-                id="PROD_Period_generation_edit">
+            <select style="height: 20px; margin-top: 20px;" for="PROD_Period_generation_edit"
+                name="PROD_Period_generation_edit" id="PROD_Period_generation_edit">
                 <option value="First">First</option>
                 <option value="Second">Second</option>
                 <option value="Third">Third</option>
@@ -212,7 +213,8 @@
                 <option value="Ninth">Ninth</option>
             </select>
 
-            <select style="height: 20px; margin-top: 20px;" for="PROD_Console_type_edit" name="PROD_Console_type_edit" id="PROD_Console_type_edit">
+            <select style="height: 20px; margin-top: 20px;" for="PROD_Console_type_edit" name="PROD_Console_type_edit"
+                id="PROD_Console_type_edit">
                 <option value="home console player">home console player</option>
                 <option value="handheld console player">handheld console player</option>
                 <option value="NULL">NULL</option>
@@ -293,6 +295,7 @@
 
             //For update
             function Product_update() {
+
                 let PROD_Name_edit = document.getElementById("PROD_Name_edit");
                 let PROD_Price_edit = document.getElementById("PROD_Price_edit");
                 let PROD_Description_edit = document.getElementById("PROD_Description_edit");
@@ -312,6 +315,10 @@
 
                 if (PROD_Image_edit != null) {
                     PROD_Image_edit = PROD_Image_edit.value;
+                }
+
+                if (PROD_Name_edit.length < 1 || PROD_Price_edit.length < 1 || PROD_Description_edit.length < 1 || PROD_Image_edit.length < 1) {
+                    return window.location.reload();
                 }
 
                 let PROD_Type_edit = document.getElementById("PROD_Type_edit");

@@ -263,6 +263,10 @@
                     USER_Password_edit = USER_Password_edit.value;
                 }
 
+                if (USER_Firstname_edit.length < 1 || USER_Lastname_edit.length < 1 || USER_Telephone_edit.length < 1 || USER_Address_edit.length < 1 || USER_EMAIL_edit.length < 1 || USER_Password_edit.length < 1) {
+                    return window.location.reload();
+                }
+
                 let USER_Role_edit = document.getElementById("USER_Role_edit");
 
                 USER_Role_edit = USER_Role_edit.options[USER_Role_edit.selectedIndex].text;
