@@ -53,7 +53,7 @@ let dbConn = mysql.createConnection({
 //Insert
 // Testing get insert new product
 // method: post
-// URL: http://localhost:4301/product
+// URL: http://localhost:4301/Result_Product-Add
 // body: raw (JSON)
 //
 // {
@@ -101,7 +101,7 @@ const PostProduct = (req, res) => {
 // method: put
 // body: raw (JSON)
 //
-// URL: http://localhost:4301/product/2
+// URL: http://localhost:4301/Result_Product-edit/2
 // {
 //   "PROD_Name": "Magnavox Odyssey 2",
 //   "PROD_Price": 3000,
@@ -112,7 +112,7 @@ const PostProduct = (req, res) => {
 //   "PROD_Console_type": "home console player"
 // }
 //
-// URL: http://localhost:4301/product/3
+// URL: http://localhost:4301/Result_Product-edit/3
 // {
 //   "PROD_Name": "Wii console",
 //   "PROD_Price": "5990",
@@ -153,8 +153,8 @@ const PutProduct = (req, res) => {
 //Delete
 // Testing delete product
 // method: delete
-// URL: http://localhost:4301/product/1
-// URL: http://localhost:4301/product/2
+// URL: http://localhost:4301/Result_Product-delete/1
+// URL: http://localhost:4301/Result_Product-delete/2
 const DeleteProduct = (req, res) => {
   let sqlQuery = "DELETE FROM PRODUCT WHERE PROD_ID=" + req.params.id;
   let query = dbConn.query(sqlQuery, (err, results) => {
@@ -199,7 +199,7 @@ const DeleteProduct = (req, res) => {
 //Insert
 // Testing insert new User
 // method: post
-// URL: http://localhost:4301/user
+// URL: http://localhost:4301/Result_User-Add
 // body: raw (JSON)
 
 // {
@@ -247,7 +247,7 @@ const PostUser = (req, res) => {
 // method: put
 // body: raw (JSON)
 //
-// URL: http://localhost:4301/user/1000000001
+// URL: http://localhost:4301/Result_User-edit/1000000001
 // {
 //  "USER_Firstname": "Chayanin",
 //  "USER_Lastname": "Boonnak",
@@ -258,7 +258,7 @@ const PostUser = (req, res) => {
 //  "USER_Role": "Client"
 // }
 //
-// URL: http://localhost:4301/user/1000000002
+// URL: http://localhost:4301/Result_User-edit/1000000002
 // {
 //  "USER_Firstname": "Chantaton",
 //  "USER_Lastname": "Visejton",
@@ -299,8 +299,8 @@ const PutUser = (req, res) => {
 //Delete
 // Testing delete User information
 // method: delete
-// URL: http://localhost:4301/user/1000000003
-// URL: http://localhost:4301/user/1000000004
+// URL: http://localhost:4301/Result_User-delete/1000000003
+// URL: http://localhost:4301/Result_User-delete/1000000004
 const DeleteUser = (req, res) => {
   let sqlQuery =
     "DELETE FROM USER WHERE USER.USER_ID=" + req.params.id;
@@ -313,26 +313,6 @@ const DeleteUser = (req, res) => {
     });
   });
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // No criteria search & Criteria search
 // Testing get product from criteria and no criteria
